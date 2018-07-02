@@ -1,0 +1,20 @@
+<%= render 'layouts/mailers/header' %>
+
+<table width="80%">
+  <tr>
+    <td height="25">
+    </td>
+  </tr>
+  <tr>
+    <td align="left">
+      <p>
+        <%= t('.body_text_1',
+        start: @reservation_date,
+        venue: @venue.venue_name) %>
+      </p>
+      <p><%= t('.body_text_2',
+                phone: @venue.phone_number) %>
+      </p>
+    </td>
+  </tr>
+</table>

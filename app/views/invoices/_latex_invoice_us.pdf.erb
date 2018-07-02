@@ -1,0 +1,202 @@
+% US Invoice Template
+
+<% customer = invoice.owner %>
+<% biller = invoice.biller %>
+
+%% Document Header %%%%%
+\fontsize{12pt}{14pt}
+\selectfont
+\hspace*{1.5cm}
+\begin{tabular}[t]{@{}p{8.5cm}@{}p{8.5cm}@{}r}
+  \parbox[t]{7.5cm}{
+    \fontsize{16pt}{18pt}
+    \selectfont
+    \begin{hyphenrules}{nohyphenation}
+      \textsc{<%= safe_text biller.company_legal_name %>} \\
+    \end{hyphenrules}
+    \fontsize{12pt}{14pt}
+    \selectfont
+    \\
+    \\
+    \\
+    \\
+    \textcolor{subduedColor}{Client:} <%= safe_text customer.full_name %> \\
+    <%= safe_text customer.street_address %> \\
+    <%= safe_text "#{customer.zipcode} #{customer.city}" %>\\
+    \textcolor{subduedColor}{Phone:} <%= customer.phone_number %>\\
+    \\
+    \\
+    \\
+    \fontsize{16pt}{18pt}
+    \selectfont
+    \textbf{\$<%= number_with_precision(invoice.total, precision: 2) %>}\\
+    \fontsize{9pt}{11pt}
+    \selectfont
+    due <%= TimeSanitizer.strftime(invoice.due_date, "%B %d, %Y") %>
+  }
+  &
+  \parbox[t]{7.5cm}{
+    INVOICE \\
+    \fontsize{9pt}{11pt}
+    \selectfont
+    <%= TimeSanitizer.strftime(invoice.billing_date, "%B %d, %Y") %>
+    \fontsize{12pt}{14pt}
+    \selectfont
+    \\
+    \\
+    \\
+    \\
+    \textcolor{subduedColor}{Payable to:} <%= biller.company_legal_name %> \\
+    <%= safe_text biller.company_street_address %> \\
+    <%= safe_text "#{biller.company_zip} #{biller.company_city}"  %>\\
+    \textcolor{subduedColor}{Phone:} <%= biller.company_phone %>\\
+    \textcolor{subduedColor}{Email:} <%= safe_text biller.invoice_sender_email %>\\
+    \textcolor{subduedColor}{Website:} <%= safe_text biller.company_website %>\\
+    \\
+  } & \#<%= invoice.id %> (1) \\
+\end{tabular}
+\vspace{1cm}
+%% Document Header END %%%%%
+
+%% Items %%%%%
+\fontsize{8pt}{9pt}
+\selectfont
+
+\begin{longtable}[t]{@{\extracolsep{\fill}}rlrrrr@{}}
+\parbox[t]{0.50cm}{\raggedleft Line\\No.} &
+\parbox[t]{10.0cm}{Product/Service} &
+\parbox[t]{1.5cm}{\raggedleft TAX-\%} &
+\parbox[t]{1.5cm}{\raggedleft Price} &
+\parbox[t]{1.5cm}{\raggedleft TAX\\amount} &
+\parbox[t]{1.5cm}{\raggedleft Amount\\with TAX} \\[2.5ex]
+\hline
+\endhead
+<% item_number = 0 %>
+<% tax_total = 0 %>
+<% no_tax_total = 0 %>
+
+<% items_count = invoice.all_items.length %>
+<% items_on_page = 14 %>
+<% if invoice.invoice_components.present? %>
+\\
+& \textbf{Reservations:}\\
+\\
+<% end %>
+<% invoice.invoice_components.sort_by(&:start_time).each do |ic| %>
+  <% item_number += 1 %>
+  <% raw_tax = ic.calculate_tax %>
+  <% raw_price_without_tax = ic.calculate_price_without_tax %>
+  <% tax_total += raw_tax %>
+  <% no_tax_total += raw_price_without_tax %>
+  <% start_date = TimeSanitizer.strftime(ic.start_time, :date) %>
+  <% start_time = TimeSanitizer.strftime(ic.start_time, :user_clock_time) %>
+  <% end_time = TimeSanitizer.strftime(ic.end_time, :user_clock_time) %>
+  <% coach = ic.coaches.any? ? "(Coach #{ic.coaches.map(&:full_name).join(', ')})" : '' %>
+  <% cancelled = ic.reservation.blank? ? I18n.t('reservations.cancelled') : ''%>
+  <% tax_rate = biller.tax_rate * 100 %>
+  <% price_without_tax = number_with_precision(raw_price_without_tax , precision: 2) %>
+  <% tax = number_with_precision(raw_tax, precision: 2) %>
+  <% price = number_with_precision(ic.price, precision: 2) %>
+  \raggedbottom <%= item_number %> & \parbox[t]{10.0cm}{ \#<%= ic.reservation_id %> <%= safe_text ic.sport %> <%= start_date %>, at <%= start_time %> - <%= end_time %>, court <%= safe_text ic.court_name %><%= safe_text coach %> <%= cancelled %>}  & \raggedbottom <%= tax_rate %>\% & \raggedbottom <%= price_without_tax %> & \raggedbottom <%= tax %> & \raggedbottom <%= price %> \\[2.2ex]
+  <% if items_count >= items_on_page && (item_number % items_on_page == 0) && (items_count - item_number) <= items_on_page %>
+    \newpage
+  <% end %>
+
+<% end %>
+
+<% if invoice.participation_invoice_components.present? %>
+\\
+& \textbf{Participations:}\\
+\\
+<% end %>
+<% invoice.participation_invoice_components.sort_by(&:start_time).each do |pic| %>
+  <% item_number += 1 %>
+  <% tax_total += pic.calculate_tax %>
+  <% no_tax_total += pic.calculate_price_without_tax %>
+  <% start_date = TimeSanitizer.strftime(pic.start_time, :date) %>
+  <% start_time = TimeSanitizer.strftime(pic.start_time, :user_clock_time) %>
+  <% end_time = TimeSanitizer.strftime(pic.end_time, :user_clock_time) %>
+  <% coach = pic.coaches.any? ? ", Coach #{pic.coaches.map(&:full_name).join(', ')}" : '' %>
+  <% price = number_with_precision(pic.price, precision: 2) %>
+  <% price_without_tax = number_with_precision(pic.calculate_price_without_tax , precision: 2) %>
+  <% tax = number_with_precision(pic.calculate_tax, precision: 2) %>
+  \raggedbottom <%= item_number %> & \parbox[t]{10.0cm}{ \#<%= pic.reservation.id %> <%= safe_text pic.court.sport %> <%= start_date %>, at <%= start_time %> - <%= end_time %>, court <%= safe_text pic.court.court_name %>(<%= safe_text pic.reservation.group.name %> group<%= safe_text coach %>)}  & \raggedbottom <%= biller.tax_rate * 100 %>\% & \raggedbottom <%= price_without_tax %> & \raggedbottom <%= tax %> & \raggedbottom <%= price %> \\[2.2ex]
+  <% if items_count >= items_on_page && (item_number % items_on_page == 0) && (items_count - item_number) <= items_on_page %>
+    \newpage
+  <% end %>
+
+<% end %>
+
+<% if invoice.group_subscription_invoice_components.present? %>
+\\
+& \textbf{Group subscriptions:}\\
+\\
+<% end %>
+<% invoice.group_subscription_invoice_components.sort_by(&:start_date).each do |gsic| %>
+  <% item_number += 1 %>
+  <% tax_total += gsic.calculate_tax %>
+  <% no_tax_total += gsic.calculate_price_without_tax %>
+  <% start_date = TimeSanitizer.strftime(gsic.start_date, :date) %>
+  <% end_date = TimeSanitizer.strftime(gsic.end_date, :date) %>
+  <% price = number_with_precision(gsic.price, precision: 2) %>
+  <% price_without_tax = number_with_precision(gsic.calculate_price_without_tax , precision: 2) %>
+  <% tax = number_with_precision(gsic.calculate_tax, precision: 2) %>
+  \raggedbottom <%= item_number %> & \parbox[t]{10.0cm}{ Season <%= start_date %> - <%= end_date %>, <%= safe_text gsic.group.name %> group}  & \raggedbottom <%= biller.tax_rate * 100 %>\% & \raggedbottom <%= price_without_tax %> & \raggedbottom <%= tax %> & \raggedbottom <%= price %> \\[2.2ex]
+  <% if items_count >= items_on_page && (item_number % items_on_page == 0) && (items_count - item_number) <= items_on_page %>
+    \newpage
+  <% end %>
+
+<% end %>
+
+<% if invoice.gamepass_invoice_components.present? %>
+\\
+& \textbf{Game Passes:}\\
+\\
+<% end %>
+<% invoice.gamepass_invoice_components.each do |gic| %>
+  <% item_number += 1 %>
+  <% tax_total += gic.calculate_tax %>
+  <% no_tax_total += gic.calculate_price_without_tax %>
+  \raggedbottom <%= item_number %> &
+  \begin{minipage}{10.0cm}
+    <%== safe_text gic.game_pass.auto_name %>
+  \end{minipage} &
+  \raggedbottom <%= biller.tax_rate * 100 %>\% &
+  \raggedbottom <%= number_with_precision(gic.calculate_price_without_tax , precision: 2) %> &
+  \raggedbottom <%= number_with_precision(gic.calculate_tax , precision: 2) %> &
+  \raggedbottom <%= number_with_precision(gic.price , precision: 2) %> \\[2.2ex]
+  <% if items_count >= items_on_page && (item_number % items_on_page == 0) && (items_count - item_number) <= items_on_page %>
+    \newpage
+  <% end %>
+
+<% end %>
+
+<% if invoice.custom_invoice_components.present? %>
+\\
+& \textbf{Additional:}\\
+\\
+<% end %>
+<% invoice.custom_invoice_components.each do |cic| %>
+  <% item_number += 1 %>
+  <% tax_total += cic.calculate_tax %>
+  <% no_tax_total += cic.calculate_price_without_tax %>
+  \raggedbottom <%= item_number %> &
+  \begin{minipage}{10.0cm}
+    <%== safe_text cic.name %>
+  \end{minipage} &
+  \raggedbottom <%= cic.vat_decimal*100 %>\% &
+  \raggedbottom <%= number_with_precision(cic.calculate_price_without_tax , precision: 2) %> &
+  \raggedbottom <%= number_with_precision(cic.calculate_tax , precision: 2) %> &
+  \raggedbottom <%= number_with_precision(cic.price , precision: 2) %> \\[2.2ex]
+  <% if items_count >= items_on_page && (item_number % items_on_page == 0) && (items_count - item_number) <= items_on_page %>
+    \newpage
+  <% end %>
+
+<% end %>  \hline
+\\
+& \textbf{Total} &      & <%= number_with_precision(no_tax_total, precision: 2)%> & <%= number_with_precision(tax_total, precision: 2) %> & <%= number_with_precision(invoice.total, precision: 2) %> \\
+\\
+& \textbf{Balance Due} & & & & \textbf{\$<%= number_with_precision(invoice.total, precision: 2) %>} \\
+
+\end{longtable}
+%% Items END%%%%%

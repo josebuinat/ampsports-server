@@ -1,0 +1,54 @@
+<table width="100%" class="pa20">
+  <tr>
+    <td height="40"></td>
+  </tr>
+  <tr>
+    <td>
+      <h1 class="aligncenter bold"><%= t('.invoice_for') %></h1>
+    </td>
+  </tr>
+  <tr>
+    <td height="5"></td>
+  </tr>
+  <tr>
+    <td>
+      <h1 class="aligncenter bold blueText"><%= @company_legal_name %></h1>
+    </td>
+  </tr>
+</table>
+
+<table width="80%">
+  <tr>
+    <td>
+      <p class="aligncenter blueText">
+        <%= t('.sent_via') %>
+      </p>
+    </td>
+  </tr>
+  <tr>
+    <td class="pa20" align="center">
+      <%= link_to t('.invoice_link'),
+                    company_invoice_url(
+                      @invoice.company,
+                      @invoice,
+                      format: :pdf,
+                      host: api_host
+                    ),
+                    { :class => "btn-secondary" } %>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p class="aligncenter">
+        <%= t('.contact_company',
+                company: @company_legal_name,
+                phone: @company.company_phone) %>
+      </p>
+    </td>
+  </tr>
+  <tr>
+    <td height="15"></td>
+  </tr>
+</table>
+
+<%= render 'layouts/mailers/best_playven' %>

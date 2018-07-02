@@ -1,0 +1,255 @@
+- id: 10001
+  iso_2: US-AK
+  name: Alaska
+  abbreviation: AK
+
+- id: 10002
+  iso_2: US-AL
+  name: Alabama
+  abbreviation: AL
+
+- id: 10004
+  iso_2: US-AZ
+  name: Arizona
+  abbreviation: AZ
+
+- id: 10005
+  iso_2: US-AR
+  name: Arkansas
+  abbreviation: AR
+
+- id: 10006
+  iso_2: US-CA
+  name: California
+  abbreviation: CA
+
+- id: 10007
+  iso_2: US-CO
+  name: Colorado
+  abbreviation: CO
+
+- id: 10008
+  iso_2: US-CT
+  name: Connecticut
+  abbreviation: CT
+
+- id: 10009
+  iso_2: US-DE
+  name: Delaware
+  abbreviation: DE
+
+- id: 10010
+  iso_2: US-DC
+  name: "Washington, D.C."
+  abbreviation: DC
+
+
+- id: 10012
+  iso_2: US-FL
+  name: Florida
+  abbreviation: FL
+
+- id: 10013
+  iso_2: US-GA
+  name: Georgia
+  abbreviation: GA
+
+- id: 10015
+  iso_2: US-HI
+  name: Hawaii
+  abbreviation: HI
+
+- id: 10016
+  iso_2: US-ID
+  name: Idaho
+  abbreviation: ID
+
+- id: 10017
+  iso_2: US-IL
+  name: Illinois
+  abbreviation: IL
+
+- id: 10018
+  iso_2: US-IN
+  name: Indiana
+  abbreviation: IN
+
+- id: 10019
+  iso_2: US-IA
+  name: Iowa
+  abbreviation: IA
+
+- id: 10020
+  iso_2: US-KS
+  name: Kansas
+  abbreviation: KS
+
+- id: 10021
+  iso_2: US-KY
+  name: Kentucky
+  abbreviation: KY
+
+- id: 10022
+  iso_2: US-LA
+  name: Louisiana
+  abbreviation: LA
+
+- id: 10023
+  iso_2: US-ME
+  name: Maine
+  abbreviation: ME
+
+- id: 10025
+  iso_2: US-MD
+  name: Maryland
+  abbreviation: MD
+
+- id: 10026
+  iso_2: US-MA
+  name: Massachusetts
+  abbreviation: MA
+
+- id: 10027
+  iso_2: US-MI
+  name: Michigan
+  abbreviation: MI
+
+- id: 10028
+  iso_2: US-MN
+  name: Minnesota
+  abbreviation: MN
+
+- id: 10029
+  iso_2: US-MS
+  name: Mississippi
+  abbreviation: MS
+
+- id: 10030
+  iso_2: US-MO
+  name: Missouri
+  abbreviation: MO
+
+- id: 10031
+  iso_2: US-MT
+  name: Montana
+  abbreviation: MT
+
+- id: 10032
+  iso_2: US-NE
+  name: Nebraska
+  abbreviation: NE
+
+- id: 10033
+  iso_2: US-NV
+  name: Nevada
+  abbreviation: NV
+
+- id: 10034
+  iso_2: US-NH
+  name: New Hampshire
+  abbreviation: NH
+
+- id: 10035
+  iso_2: US-NJ
+  name: New Jersey
+  abbreviation: NJ
+
+- id: 10036
+  iso_2: US-NM
+  name: New Mexico
+  abbreviation: NM
+
+- id: 10037
+  iso_2: US-NY
+  name: New York
+  abbreviation: NY
+
+- id: 10038
+  iso_2: US-NC
+  name: North Carolina
+  abbreviation: NC
+
+- id: 10039
+  iso_2: US-ND
+  name: North Dakota
+  abbreviation: ND
+
+- id: 10041
+  iso_2: US-OH
+  name: Ohio
+  abbreviation: OH
+
+- id: 10042
+  iso_2: US-OK
+  name: Oklahoma
+  abbreviation: OK
+
+- id: 10043
+  iso_2: US-OR
+  name: Oregon
+  abbreviation: OR
+
+- id: 10045
+  iso_2: US-PA
+  name: Pennsylvania
+  abbreviation: PA
+
+- id: 10047
+  iso_2: US-RI
+  name: Rhode Island
+  abbreviation: RI
+
+- id: 10048
+  iso_2: US-SC
+  name: South Carolina
+  abbreviation: SC
+
+- id: 10049
+  iso_2: US-SD
+  name: South Dakota
+  abbreviation: SD
+
+- id: 10050
+  iso_2: US-TN
+  name: Tennessee
+  abbreviation: TN
+
+- id: 10051
+  iso_2: US-TX
+  name: Texas
+  abbreviation: TX
+
+- id: 10052
+  iso_2: US-UT
+  name: Utah
+  abbreviation: UT
+
+- id: 10053
+  iso_2: US-VT
+  name: Vermont
+  abbreviation: VT
+
+- id: 10055
+  iso_2: US-VA
+  name: Virginia
+  abbreviation: VA
+
+- id: 10056
+  iso_2: US-WA
+  name: Washington
+  abbreviation: WA
+
+- id: 10057
+  iso_2: US-WV
+  name: West Virginia
+  abbreviation: WV
+
+- id: 10058
+  iso_2: US-WI
+  name: Wisconsin
+  abbreviation: WI
+
+- id: 10059
+  iso_2: US-WY
+  name: Wyoming
+  abbreviation: WY

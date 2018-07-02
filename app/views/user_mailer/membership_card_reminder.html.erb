@@ -1,0 +1,71 @@
+<table class="pa20" width="100%" cellpadding="0" cellspacing="0">
+  <tr>
+    <td>
+      <table width="100%">
+        <tr>
+          <td align="left" class="logo-wrapper">
+            <img width="100" height="24" src="<%= image_url('amperlogo_blue@x2.png', host: api_host) %>" alt="Logo">
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr>
+    <td height="40"></td>
+  </tr>
+  <tr>
+    <td>
+      <%= render 'layouts/mailers/venue_title' %>
+    </td>
+  </tr>
+  <tr>
+    <td height="40"></td>
+  </tr>
+  <tr>
+    <td>
+      <table class="invoice">
+        <tr>
+          <td class="invoice__details">
+            <p class="invoice__details-title"><%= t('.sender') %></p>
+            <p><%= @user.full_name %></p>
+          </td>
+        </tr>
+        <tr>
+          <td height="20"></td>
+        </tr>
+        <tr>
+          <td class="invoice__details">
+            <p class="invoice__details-title"><%= t('.sender_email') %></p>
+            <p><%= @user.email %></p>
+          </td>
+        </tr>
+        <tr>
+          <td height="20"></td>
+        </tr>
+        <tr>
+          <td class="pa20">
+            <%= t('.user_card_reminder') %>
+          </td>
+        </tr>
+        <tr>
+          <td height="20"></td>
+        </tr>
+        <tr>
+          <td align="center">
+            <%= link_to t('.click_here'), "#{user_frontend_host}/profile", { :class => "btn-secondary" } %>
+          </td>
+        </tr>
+        <tr>
+          <td height="20">
+          </td>
+        </tr>
+        <tr>
+          <td class="aligncenter">
+            <p class="m0 smallText"><%= "#{@venue.venue_name} #{t('.business_id')}: #{@venue.company.company_tax_id}" %></p>
+            <p class="m0 smallText"><%= "#{@venue.street}, #{@venue.zip}, #{@venue.city}" %></p>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>

@@ -1,0 +1,27 @@
+<%= render 'layouts/mailers/header' %>
+
+<table width="100%">
+  <tr>
+    <td height="25">
+    </td>
+  </tr>
+</table>
+
+<table width="80%">
+  <tr>
+    <td>
+      <p>
+        <%= t('.body_text_1',
+        start: @reservation_date,
+        venue: @venue.venue_name) %>
+      </p>
+      <p>
+        <%= t('.body_refund') if @reservation.refunded? %>
+      </p>
+      <p>
+        <%= t('.body_text_2',
+        phone: @venue.phone_number) %>
+      </p>
+    </td>
+  </tr>
+</table>

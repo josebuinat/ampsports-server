@@ -1,0 +1,6 @@
+first_name,last_name,email,phone_number,street_address,zipcode,city
+John,Doe,example@mail.com,0000000,1st road,50000,Chicago
+John,,failing row,0000000,1st road,50000,Chicago
+Jo**!hn,Do&^%le,,0000000,1st road,50000,Chicago
+
+#*required,#*required,#*required,#can be empty,#can be empty,#can be empty,#can be empty

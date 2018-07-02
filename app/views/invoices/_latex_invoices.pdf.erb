@@ -1,0 +1,33 @@
+%% Invoices pages wrapper %%
+
+\documentclass[a4paper,10pt]{letter}
+\title{Lasku 1234}
+\date{20.02.2008}
+\usepackage{pslatex}
+\usepackage[utf8]{inputenc}
+\usepackage[finnish]{babel}
+\usepackage[left=0cm,top=1cm,right=0cm,bottom=0.7cm,nohead,nofoot]{geometry}
+\usepackage[gen]{eurosym}
+\usepackage{lmodern,textcomp}
+\usepackage{color}
+%\usepackage{pstricks}
+\usepackage{rotating}
+\usepackage{longtable}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\usepackage[T1]{fontenc} % Fixes scandinavian character problem
+\definecolor{subduedColor}{rgb}{0.45,0.45,0.45}% dark grey
+
+\begin{document}
+  \renewcommand{\headrulewidth}{0pt}
+  <% invoices.each do |invoice| %>
+    \newpage
+    \fancyhf{}
+    <% country_code = invoice.biller.country.code %>
+    <%= render partial: "/invoices/latex_invoice_#{country_code}",
+                  :locals => { :invoice => invoice } %>
+    <%= render partial: "/invoices/latex_invoice_footer_#{country_code}",
+                  :locals => { :invoice => invoice } unless country_code == 'us' %>
+  <% end %>
+
+\end{document}

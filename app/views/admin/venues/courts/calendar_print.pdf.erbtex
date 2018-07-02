@@ -1,0 +1,2 @@
+<% @latex_config={:supporting=>'vendor/latex'} %>
+<%= render partial: "latex_calendar", :locals => { :courts => @courts , :calendar_date => @calendar_date} %>

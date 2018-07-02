@@ -1,0 +1,17 @@
+json.id court.id
+json.court_description court.court_description
+json.venue_id court.venue_id
+json.created_at court.created_at
+json.updated_at court.updated_at
+json.duration_policy court.duration_policy
+json.minimum_duration court.minimum_duration
+json.start_time_policy court.start_time_policy
+json.active court.active
+json.indoor court.indoor
+json.index court.index
+json.sport_name court.sport_name
+json.payment_skippable court.payment_skippable
+json.surface court.surface
+json.custom_name court.custom_name
+json.private court.private
+json.name court.court_name

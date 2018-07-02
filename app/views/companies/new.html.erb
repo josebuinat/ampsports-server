@@ -1,0 +1,156 @@
+<%= render 'shared/newnav' %>
+
+
+<main class="profile">
+  <div class="row">
+    <div class="col-xs-16 col-sm-12 col-sm-offset-2">
+<br>
+        <%= form_for @company do |f| %>
+        <div class="profile-edit">
+          <div class="profile-edit__title">
+            <div class="row">
+              <div class="col-xs-16 col-sm-8">
+                <h2>Create A New Company</h2>
+              </div>
+              <div class="col-xs-16 col-sm-8">
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-xs-16 col-sm-8">
+              <fieldset class="form-group">
+                <%= f.text_field :company_legal_name, class: 'form-control', placeholder: true %>
+              </fieldset>
+            </div>
+            <div class="col-xs-16 col-sm-8">
+              <fieldset class="form-group">
+                <%= f.text_field :company_tax_id, class: 'form-control', placeholder: true %>
+              </fieldset>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-xs-16 col-sm-8">
+              <fieldset class="form-group">
+                <%= f.select :company_business_type, t('companies.company_business_type'), id: "company_business_type", prompt: "Select...", class: "form-control js-select2" %>
+              </fieldset>
+            </div>
+            <div class="col-xs-16 col-sm-8">
+              <fieldset class="form-group">
+                <%= f.collection_select :country_id, Country.all, :id, :name, id: "country_id", prompt: "Select...", class: "form-control js-select2" %>
+              </fieldset>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-xs-16 col-sm-8">
+              <fieldset class="form-group">
+                <%= f.text_field :company_street_address, class: 'form-control', placeholder: true %>
+              </fieldset>
+            </div>
+            <div class="col-xs-16 col-sm-8">
+              <fieldset class="form-group">
+                <%= f.text_field :company_zip, class: 'form-control', placeholder: true %>
+              </fieldset>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-xs-16 col-sm-8">
+              <fieldset class="form-group">
+                <%= f.text_field :company_city, class: 'form-control', placeholder: true %>
+              </fieldset>
+            </div>
+            <div class="col-xs-16 col-sm-8">
+              <fieldset class="form-group">
+                <%= f.text_field :company_website, class: 'form-control', placeholder: true %>
+              </fieldset>
+            </div>
+          </div>
+
+          <div class="row usa-only">
+            <div class="col-xs-16 col-sm-8">
+              <fieldset class="form-group">
+                <%= f.collection_select :usa_state, State.all, :name, :name, prompt: "Select state", class: 'form-control', placeholder: true %>
+              </fieldset>
+            </div>
+            <div class="col-xs-16 col-sm-8">
+              <fieldset class="form-group">
+                <%= f.text_field :usa_ssn_last_4, class: 'form-control', placeholder: 'Last 4 digits of SSN' %>
+              </fieldset>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-xs-16 col-sm-8">
+              <fieldset class="form-group">
+                <%= f.text_field :company_iban, class: 'form-control', placeholder: 'IBAN for EU countries, account number for US' %>
+              </fieldset>
+            </div>
+            <div class="col-xs-16 col-sm-8">
+              <fieldset class="form-group">
+               <%= f.text_field :company_phone, class: 'form-control', placeholder: true %>
+              </fieldset>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-16 col-sm-8">
+              <div class="form-group">
+                <%= f.text_field :bank_name, class: 'form-control', placeholder: true, autofocus: true %>
+              </div>
+            </div>
+            <div class="col-xs-16 col-sm-8">
+              <div class="form-group">
+                <%= f.text_field :company_bic, class: 'form-control', placeholder: true, autofocus: true %>
+              </div>
+            </div>
+          </div>
+
+          <div class="row usa-only">
+            <div class="col-xs-16 col-sm-8">
+              <fieldset class="form-group">
+                <%= f.text_field :usa_routing_number, class: 'form-control', placeholder: 'Routing number', autofocus: true %>
+              </fieldset>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-xs-16 col-sm-8">
+              <fieldset class="form-group">
+               <input type="checkbox" name="tos" checked="false">
+                <%= t('.stripe_term_accept_html', link: 'https://stripe.com/us/terms') %>
+                </fieldset>
+            </div>
+          </div>
+
+
+        <div class="profile-edit__save">
+          <%= f.submit t('.create_button'), class: "btn btn-lg btn-primary" %>
+        </div>
+        <% end %>
+    </div>
+  </div>
+</main>
+<br>
+
+
+<script>
+  $(document).ready(function () {
+    Init.profile();
+    $('#company_country_id').on('change', function(){
+      selectedCountry = this.value;
+      if (selectedCountry != '2') {
+        $('.usa-only').hide();
+        $('.usa-only input, .usa-only select').prop('disabled', true);
+      } else {
+        $('.usa-only').show();
+        $('.usa-only input, .usa-only select').prop('disabled', false);
+      }
+    });
+    $('#company_country_id').change();
+  });
+</script>
+<script src="https://checkout.stripe.com/checkout.js"></script>
+<%= render 'layouts/footer' %>
+

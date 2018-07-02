@@ -1,0 +1,97 @@
+<div class="row">
+  <div class="col-lg-12">
+    <div class="ibox float-e-margins">
+      <div class="ibox-content">
+        <%= form_tag create_drafts_company_invoices_path(company) do %>
+          <table class="create_invoices_table table table-stripped"
+                 data-sorting=true
+                 data-filtering=true
+                 data-filter-placeholder="<%= t('invoices.create_invoices.search_placeholder')%>"
+                 data-paging=true
+                 data-paging-size='8'
+                 data-paging-position='right'
+                 >
+                 <thead>
+                   <tr>
+                     <th><%= t('invoices.create_invoices.table_head_name')%></th>
+                     <th><%= t('invoices.create_invoices.table_head_email')%></th>
+                     <th data-type='number'><%= t('invoices.create_invoices.table_head_id')%></th>
+                     <th><%= "#{t('invoices.create_invoices.table_head_balance')} (#{@current_company.currency_unit})"%></th>
+                     <th data-sortable=false data-filterable=false>
+                       <label>
+                         <input type='checkbox' class='js-outstanding-select-all' />
+                         <%= t('invoices.create_invoices.table_head_action') %>
+                       </label>
+                     </th>
+                       <% if user_type == 'saved_users' %>
+                       <th></th>
+                     <% end %>
+                   </tr>
+                 </thead>
+                 <tbody>
+                   <% users.each do |user| %>
+                     <tr>
+                       <td><%= user.full_name %></td>
+                       <td><%= user.email %></td>
+                       <td><%= user.id %></td>
+                       <td data-sort-value="<%= footable_sort_value(outstanding_balances[user.id]) %>"><%= number_to_currency(outstanding_balances[user.id].to_f) %></td>
+                       <td><%= check_box_tag 'user_ids[]', user.id%></td>
+                       <% if user_type == 'saved_users' %>
+                         <td><%= link_to t('invoices.create_invoices.remove_from_saved'), company_remove_user_from_qi_path(company, user_id: user.id),
+                           method: :post %></td>
+                       <% end %>
+                     </tr>
+                   <% end %>
+                 </tbody>
+          </table>
+          <div class='row'>
+            <div class='col-md-2'>
+              <label>
+                <input name='save' type='checkbox' />
+                <span><%= t('invoices.create_invoices.save_label')%></span>
+              </label>
+            </div>
+          </div>
+          <div class='row'>
+            <div class='col-md-2'>
+              <label>
+                <input name='user_type' type='checkbox' value='<%= user_type %>' />
+                <span><%= t('invoices.create_invoices.create_for_all') %></span>
+              </label>
+            </div>
+          </div>
+          <br />
+          <div class='row'>
+            <div class="col-md-2">
+              <div class="input-group date" data-provide="datepicker">
+                <input type="text"
+                       name="start_date"
+                       class="form-control datepicker"
+                       data-date-format="dd/mm/yyyy"
+                       value="<%= company.cached_invoice_period_start || (Date.current - 30.days).strftime("%d/%m/%Y") %>" required>
+                <div class="input-group-addon">
+                  <span class="fa fa-calendar"></span>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-2">
+              <div class="input-group date" data-provide="datepicker">
+                <input type="text"
+                       name="end_date"
+                       class="form-control datepicker"
+                       data-date-format="dd/mm/yyyy"
+                       value="<%= company.cached_invoice_period_end || Date.current.strftime("%d/%m/%Y") %>" required>
+                <div class="input-group-addon">
+                  <span class="fa fa-calendar"></span>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-2">
+              <%= submit_tag t('invoices.create_invoices.submit_button'), class: "form-control btn-default" %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

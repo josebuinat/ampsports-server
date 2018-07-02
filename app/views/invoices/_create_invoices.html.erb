@@ -1,0 +1,61 @@
+<div class="panel-body">
+  <div class="ibox float-e-margins">
+    <div class="">
+        <h3><%= t('.header')%></h3>
+    </div>
+    <div class="wrapper wrapper-content  animated fadeInRight">
+      <div class="row m-t-lg">
+        <div class="col-lg-12">
+          <div class="tabs-container">
+            <ul class="nav nav-tabs">
+              <li class=<%= @recent_users.empty? ? "" : "active" %>>
+                <a data-toggle="tab" href="#create-invoice-recent"><%= t('.recent')%></a>
+              </li>
+              <li>
+                <a data-toggle="tab" href="#create-invoice-saved"><%= t('.saved')%></a>
+              </li>
+              <li class=<%= @recent_users.empty? ? "active" : "" %>>
+                <a data-toggle="tab" href="#create-invoice-memberships"><%= t('.memberships')%></a>
+              </li>
+              <li class=""><a data-toggle="tab" href="#create-invoice-all"><%= t('.all')%></a></li>
+            </ul>
+            <div class="tab-content">
+              <div id="create-invoice-recent" class="tab-pane <%= @recent_users.empty? ? "" : "active" %>">
+                <%= render partial: 'create_invoices_user_list',
+                  locals: { users: @recent_users,
+                            company: @company,
+                            user_type: 'recent_users',
+                            outstanding_balances: @outstanding_balances } %>
+              </div>
+              <div id="create-invoice-saved" class="tab-pane">
+                <%= render partial: 'create_invoices_user_list',
+                  locals: { users: @saved_users,
+                            company: @company,
+                            outstanding_balances: @outstanding_balances,
+                            user_type: 'saved_users' } %>
+              </div>
+              <div id="create-invoice-memberships" class="tab-pane <%= @recent_users.empty? ? "active" : "" %>">
+                <%= render partial: 'create_invoices_user_list',
+                  locals: { users: @membership_users,
+                            company: @company,
+                            outstanding_balances: @outstanding_balances,
+                            user_type: 'membership_users' } %>
+              </div>
+              <div id="create-invoice-all" class="tab-pane">
+                <%= render partial: 'create_invoices_user_list',
+                  locals: { users: @users,
+                            company: @company,
+                            outstanding_balances: @outstanding_balances,
+                            user_type: 'all_users' } %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+$('.create_invoices_table').footable();
+</script>

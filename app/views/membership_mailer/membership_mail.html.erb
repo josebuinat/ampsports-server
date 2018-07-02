@@ -1,0 +1,165 @@
+<% company = @venue.company %>
+<% start_time = TimeSanitizer.output(@first_reservation.start_time) %>
+<% end_time = TimeSanitizer.output(@first_reservation.end_time) %>
+
+<table class="pa20" width="100%" cellpadding="0" cellspacing="0">
+  <tr>
+    <td>
+      <table width="100%">
+        <tr>
+          <td align="left" class="logo-wrapper">
+            <img width="100" height="24" src="<%= image_url('amperlogo_blue@x2.png', host: api_host) %>" alt="Logo">
+          </td>
+          <td align="right">
+            <p class="alignright smallText m0"><%= t('booking_mailer.booking_email.booking_receipt')%>
+              <%= DateTime.current.strftime("%D") %>
+            </p>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr>
+    <td height="40"></td>
+  </tr>
+  <tr>
+    <td>
+      <%= render 'layouts/mailers/venue_title' %>
+    </td>
+  </tr>
+  <tr>
+    <td height="40"></td>
+  </tr>
+  <tr>
+    <td>
+      <table class="invoice">
+        <tr>
+          <td class="invoice__details">
+            <p class="invoice__details-title"><%= t('booking_mailer.booking_email.sender') %></p>
+            <p><%= @user.full_name %></p>
+          </td>
+        </tr>
+        <tr>
+          <td height="20"></td>
+        </tr>
+        <tr>
+          <td class="invoice__details">
+            <p class="invoice__details-title"><%= t('booking_mailer.booking_email.sender_email') %></p>
+            <p><%= @user.email %></p>
+          </td>
+        </tr>
+        <tr>
+          <td height="20"></td>
+        </tr>
+
+        <% # participations are always empty for normal reservations # %>
+        <% participants = @first_reservation.participations.map(&:user) %>
+        <% if participants.present? %>
+          <tr>
+            <td class="invoice__details">
+              <p class="invoice__details-title"><%= t('booking_mailer.booking_email.participants') %></p>
+            </td>
+          </tr>
+          <% participants.each do |user| %>
+            <tr>
+              <td class="invoice__details">
+                <p><%= "#{user.full_name} (#{user.email})" %><p>
+              </td>
+            </tr>
+          <% end %>
+        <% end %>
+
+        <tr>
+          <td height="20"></td>
+        </tr>
+        <tr>
+          <td>
+            <table class="invoice-items" cellpadding="0" cellspacing="0">
+              <tr>
+                <td>
+                  <table width="100%" class="invoice-items__item">
+                    <tr>
+                      <td align="left">
+                        <p class="invoice-items__name">
+                          <%= @membership.courts.map(&:sport_name).uniq.map(&:capitalize).to_sentence %>
+                          <%= t('booking_mailer.booking_email.in_court') %>
+                          <%= @membership.courts.map(&:court_name).uniq.to_sentence %>
+                        </p>
+                        <p class="invoice-items__time">
+                          <%= @membership.start_time.strftime('%d.%m.%Y') %>
+                          -
+                          <%= @membership.end_time.strftime('%d.%m.%Y') %>,
+                          <%= start_time.strftime('%A') %>,
+                          <%= start_time.to_s(:user_clock_time) %>
+                          -
+                          <%= end_time.to_s(:user_clock_time) %>
+                        </p>
+                      </td>
+                      <td align="right" valign="middle">
+                        <p class="invoice-items__price alignright">
+                          <%= t('booking_mailer.booking_email.price') %> <%= number_to_currency(@membership.price) %></p>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+              <tr>
+                <td height="20"></td>
+              </tr>
+              <tr>
+                <td class="invoice-items__fee alignright">
+
+                </td>
+              </tr>
+
+              <tr>
+                <td height="20"></td>
+              </tr>
+
+              <tr>
+                <td>
+                  <hr>
+                </td>
+              </tr>
+
+              <tr>
+                <td height="10"></td>
+              </tr>
+
+              <tr class="total">
+                <td height="10"></td>
+              </tr>
+
+              <tr class="total">
+                <td>
+
+                </td>
+              </tr>
+
+              <tr>
+                <td>
+                  <%= @comment %>
+                </td>
+              </tr>
+
+              <tr>
+
+              </tr>
+
+              <% if @venue.confirmation_message %>
+                <tr>
+                  <td height="25"></td>
+                </tr>
+
+                <tr>
+                  <td class="invoice__confirmation_message"><%= simple_format(@venue.confirmation_message) %></td>
+                </tr>
+              <% end %>
+
+            </table>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>

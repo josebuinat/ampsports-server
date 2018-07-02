@@ -1,0 +1,38 @@
+<div class='panel-body'>
+  <div class="email-list">
+    <h3>
+      <span id='email_list_heading'>
+        <%= @email_list.name.capitalize + " (#{@email_list.users.length}) " %>
+      </span>
+      <div class="pull-right">
+        <%= hidden_field_tag "email_list_id", @email_list.id %>
+        <%= hidden_field_tag "venue_id", @email_list.venue.id %>
+        <%= button_tag "Rename", class: "btn btn-default", onclick: 'renameList()'%>
+        <%= button_tag "Add Users", class: "btn btn-default", onclick: "showAddUsersModal(this)", 'data-url': venue_email_list_off_list_users_path(@venue, @email_list) %>
+        <%= button_tag name: "remove-users", class: "btn btn-warning", disabled: true, onclick: "confirmRemoveUsers(this)" do %>
+          <span data-toggle="tooltip" title data-placement="top" data-original-title="Remove Selected Users from the list">
+            <%= "Remove Users"%>
+          </span>
+        <% end %>
+
+        <%= button_tag onclick: 'confirmDeleteEmailList(this)', class: 'btn btn-warning', 'data-name': @email_list.name do %>
+          <span data-toggle="tooltip" title data-placement="top" data-original-title="Delete Email List">
+            <%= "Delete"%>
+          </span>
+        <% end %>
+      </div>
+    </h3>
+
+    <div class='email-list-users'>
+      <script>
+        emailListShowListedUsers(<%= @email_list.id %>, "<%= venue_email_list_listed_users_path(@venue, @email_list) %>");
+      </script>
+    </div>
+  </div>
+</div>
+
+
+
+<script>
+  $('[data-toggle="tooltip"]').tooltip();
+</script>

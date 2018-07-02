@@ -1,0 +1,15 @@
+<h4><%= t(".prices_#{weekday}")%></h4>
+<% court.prices.each do |price| %>
+  <% if price.send(weekday) %>
+    <strong><%= t('.from')%></strong>
+    <%= TimeSanitizer.strftime(price.start_time, :time) %>
+    <strong><%= t('.to') %></strong>
+    <%= TimeSanitizer.strftime(price.end_time, :time) %>
+    <%= number_to_currency(price.price) %>
+    <strong>
+      <%= link_to t('.remove_link'), [venue, price], method: :delete, data: {confirm: t('.confirm_msg')}  %>
+    </strong>
+    <br>
+  <% end %>
+<% end %>
+<br>

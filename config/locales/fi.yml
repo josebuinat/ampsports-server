@@ -1,0 +1,2137 @@
+fi:
+  'true': 'kyllä'
+  'false': 'ei'
+  'nil': 'ei mitään'
+  unlimited: rajoittamaton
+
+  weekdays:
+    monday: 'maanantai'
+    tuesday: 'tiistai'
+    wednesday: 'keskiviikko'
+    thursday: 'torstai'
+    friday: 'perjantai'
+    saturday: 'lauantai'
+    sunday: 'sunnuntai'
+  weekdays_short:
+    mon: Maa
+    tue: Tii
+    wed: Kes
+    thu: Tor
+    fri: Per
+    sat: Lau
+    sun: Sun
+  api:
+    record_not_found: Haulla ei tuloksia
+    authentication:
+      unauthorized: Et ole kirjautunut sisään.
+      timeout: Kirjautuminen aikakatkaistiin.
+      social_network_error: Sosiaalisen verkoston virhe tapahtui
+      unconfirmed_account: Käyttäjätili on luotu aikaisemmin, mutta ei vahvistettu
+      wrong_password: Väärä käyttäjänimi tai salasana
+      try_social_signin: Kokeile kirjautumista Facebookin kautta!
+      invalid_signature: Virheellinen salaus allekirjoitus
+    reservations:
+      success: Varaus onnistuu
+      fail: Varaus epäonnistui. Yritä uudelleen
+      reservation_cancelled: Varaus peruutettu.
+      participation_cancelled: Osallistuminen peruutettu.
+      reservation_not_cancelled: Varauksen peruutus epäonnistui.
+      reservation_put_on_resell: Vakiovuoro listattu myyntiin.
+      reservation_was_withdrawn: Vakiovuoro poistettu myynnistä.
+      reservation_already_resold: Vakiovuoro on jo myyty.
+      not_eligible_request: Ei kelvollinen pyyntö
+    users:
+      not_found: Käyttäjää ei löydy
+      email_check:
+        email_required: Sähköpostiosoite puuttuu
+        success: Löydettiin käyttäjä annetulla sähköpostiosoitteella
+        error: Ei käyttäjää annetulla sähköpostiosoitteella
+      confirm_account:
+        email_required: Sähköpostiosoite on pakollinen
+        success: Vahvistussähköposti lähetettiin onnistuneesti
+        error: Vahvistussähköpostia ei onnistuttu lähettämään
+        token_required: confirmation_token parametri on pakollinen
+        invalid_token: confirmation_token parametri on virheellinen
+        confirmed: Käyttäjä vahvisti onnistuneesti
+        confirm_error: Käyttäjä ei voitu vahvistaa
+        required_password: Salasana parametrit tarvitaan
+      not_confirmed: Käyttäjä annetulla sähköpostilla on jo luotu, mutta käyttäjätiliä ei ole vahvistettu.
+      email_required: Sähköpostiosoite on pakollinen
+      reset_password_email: Sähköposti salasanan nollaamiseen lähetetty onnistuneesti.
+      already_exists: Sähköposti on jo olemassa
+      profile_updated: Käyttäjäprofiilin päivitetty onnistuneesti
+      password_updated: Salasanan päivitys onnistui
+      user_deleted: Käyttäjätili poistettu onnistuneesti.
+      subscriptions:
+        toggle_error: Sähköpostilistoilta poistuminen epäonnistui
+      errors:
+        passwords_required: Sekä salasana ja salasanan vahvistus ovat pakollisia
+        due_payment_delete: Käyttäjätiliä ei voi poistaa, jos tilillä on maksamattomia vuoroja.
+    customers:
+      user_not_found: Käyttäjää ei löydetty
+      already_confirmed: Vahvistettua asiakastiliä ei voi muokata.
+      has_future_reservations: Käyttäjää, jolla on tulevia varauksia ei voi poistaa.
+      no_venue: Yrityksellä ei ole keskuksia lisättynä.
+      shared_user: Käyttäjä on muiden keskuksien asiakas, muokkaaminen epäonnistui.
+      cant_delete: Ei voitu poistaa asiakasta.
+    search:
+      all_booked: Ei vapaita aikoja hakukriteereillä.
+      nothing_found: Ei kenttiä saatavilla haetun kaupungin lähellä.
+    reviews:
+      unauthorized: Review can be updated by its author only
+      deleted: Review deleted successfully
+      empty: Review parameters are empty
+
+  user_mailer:
+    membership_card_reminder:
+      user_card_reminder: Nykyinen jäsenyydet ei voi ladata, koska et ole lisännyt luottokorttia tilillesi.
+      click_here: Muuttaa sitä täältä
+      credit_card_reminder: Credit card reminder
+      booking_receipt: Varauskuitti
+      sender: Varaaja
+      sender_email: Varaajan sähköposti
+      business_id: Y-tunnus
+  group_mailer:
+    added_to_the_group:
+      subject: "Sinut on lisätty ryhmään keskuksessa %{venue_name}"
+      notification: "Sinut lisättiin ryhmään Playvenissä %{on}"
+      description: "Teidät on lisätty ryhmään %{group_name}."
+    removed_from_the_group:
+      subject: 'Sinut on poistettu ryhmästä keskuksessa %{venue_name}'
+      notification: "Sinut on poistettu ryhmästä %{on}"
+      description: "Valitettavasti teidät on poistettu ryhmästä %{group_name}."
+    coach_added_to_the_group:
+      subject: 'Sinut on lisätty ryhmän valmentajaksi paikassa %{venue_name}'
+      notification: 'Sinut lisättiin ryhmään %{on}'
+      description: "Hyviä uutisia! Sinut on lisätty valmentajaksi ryhmään nimeltä %{group_name}."
+    coach_removed_from_the_group:
+      subject: 'Sinut on lisätty valmentajaksi ryhmään paikassa %{venue_name}'
+      notification: 'Sinut poistettiin ryhmästä %{on}'
+      description: "Voi ei! Sinut on poistettu ryhmästä %{group_name} valmentajana."
+  reservation_mailer:
+    reservation_created_for_owner:
+      subject: "Varaus luotu paikassa %{venue_name} %{date}"
+      description: "Sinä omistat tämän varauksen"
+    reservation_updated:
+      subject: "Varaus paikassa %{venue_name} %{date} on päivitetty"
+      description: "Tämä varaus on päivitetty. Tarkista yksityiskohdat yllä."
+    participant_removed:
+      subject: "Sinut poistettiin varauksesta paikassa %{venue_name} %{date}"
+      description: "Et ole enään tämän varauksen osallistuja"
+    participant_added_for_participant:
+      subject: "Sinut on lisätty varaukseen paikassa %{venue_name} %{date}"
+      description: "Sinut on lisätty osallistujana olemassa olevaan varaukseen."
+    participant_added_for_coach:
+      subject: "Uusi osallistuja lisätty varaukseen paikassa %{venue_name} %{date}"
+      description: "Asiakas %{user_name} lisättiin tähän varaukseen."
+    participant_removed_for_participant:
+      subject: "Sinut on poistettu varauksesta paikassa %{venue_name} %{date}"
+      description: "Et ole enää osallistuja tässä varauksessa."
+    participant_removed_for_coach:
+      subject: "Osallistuja poistettiin varauksesta paikassa %{venue_name} %{date}"
+      description: "Asiakas %{user_name} poistettiin tästä varauksesta"
+    coach_added:
+      subject: "Olet valmentajana varauksessa paikassa %{venue_name} %{date}"
+      description: "Sinut lisättiin tähän varaukseen valmentajana."
+    coach_removed:
+      subject: "Sinut poistettiin tästä varauksesta paikassa %{venue_name} %{date}"
+      description: "Et ole enää valmentajana tässä varauksessa."
+
+  membership_mailer:
+    membership_updated:
+      subject: "Vakiovuoro päivitettiin paikassa %{venue_name}"
+      description: "Vakiovuoro ryhmälle, jossa olet jäsenenä on päivitetty."
+    membership_created:
+      subject: "Vakiovuoro luotu paikassa %{venue_name}"
+      description: "Uusi vakiovuoro luotu ryhmälle, jossa olet jäsenenä."
+      membership_mail: Luotu
+      sender: "Asiakkaalle"
+      sender_email: "Asiakkaan sähköposti"
+      in_courts: Kentillä
+      price: Hinta
+      on_weekdays:
+        monday: Maanantaisin
+        tuesday: Tiistaisin
+        wednesday: Keskiviikkoisin
+        thursday: Torstaisin
+        friday: Perjantaisin
+        saturday: Lauantaisin
+        sunday: Sunnuntaisin
+      at_time: 'kello'
+    membership_created_for_coach:
+      subject: "Vakiovuoro luotu keskuksessa %{venue_name}"
+      description: "Teidät on lisätty vakiovuoroon, jossa toimitte valmentajana. Tästä viestistä löydätte vuoron tiedot"
+  booking_mailer:
+    booking_email:
+      subject: "Varausvahvistus ja kuitti keskukseen %{venue_name} %{date}"
+      title: "Laskutus"
+      booking_receipt: Varauskuitti
+      sender: Varaaja
+      group: "Vastaanotto ryhmälle"
+      owned_by: "omistuksessa"
+      private_lesson: "Yksityinen oppitunti"
+      sender_email: Varaajan sähköposti
+      coach: Valmentaja
+      participants: Osallistujat
+      enter_code_at_gate_text: "Päästäksesi kentälle sinun tulee syöttää koodi 195760 portin \
+        vieressä olevaan laatikkoon, jonka sisältä saatte avaimen porttiin. Muistathan \
+        palauttaa avaimen heti takaisin laatikkoon ja sulkea sen."
+      in_court: kentällä
+      price: Hinta
+      convenience_fee: Käsittelymaksu
+      full_price: Yhteensä
+      vat: VAT
+      including: "sis."
+      total: Yhteensä
+      payment_status: Maksu status
+      paid: Maksettu
+      unpaid: Maksamaton
+      add_to_calendar_link: Lisää kalenteriin
+    notify_participant:
+      subject: "Muutoksia ryhmäsessiossanne %{venue_name} %{date}"
+      notification: "Teidän ryhmävarauksenne päivällä %{on} on muuttunut, kiinnitä huomiota kentän nimeen ja aikaan"
+      sender: Varaaja
+      sender_email: Varaajan sähköposti
+      enter_code_at_gate_text: "Päästäksesi kentälle sinun tulee syöttää koodi 195760 portin \
+        vieressä olevaan laatikkoon, jonka sisältä saatte avaimen porttiin. Muistathan \
+        palauttaa avaimen heti takaisin laatikkoon ja sulkea sen."
+      in_court: kentällä
+  cancellation_mailer:
+    admin_cancellation_email:
+      subject: "Varauksesi %{start} %{venue} on peruttu."
+      body_text_1: "Valitettavasti varauksenne %{start} paikassa %{venue} on peruttu urheilukeskuksen \
+        puolesta."
+      body_text_2: "Maksetuista varauksista on maksut palautettu. Voitte olla yhteydessä \
+        urheilukeskukseen puhelinnumerosta %{phone}"
+    user_cancellation_email:
+      subject: "Varauksesi %{start} %{venue} on peruttu."
+      body_text_1: "Varauksenne %{start} paikassa %{venue} on peruttu onnistuneesti toimestanne."
+      body_text_2: "Maksetuista varauksista on maksut palautettu. Voitte olla yhteydessä \
+        urheilukeskukseen puhelinnumerosta %{phone}, jos peruutuksessa on ilmentynyt epäselvyyksiä."
+  invoice_mailer:
+    invoice_email:
+      subject: "Laskunne yritykseltä %{company}"
+      invoice_for: Lasku yritykseltä
+      sent_via: "Lasku maksamattomista vuoroista Playvenin kautta lähetettynä."
+      invoice_link: "Avaa lasku tästä!"
+      contact_company: "Otathan yhteyttä %{company}, jos laskussa on epäselvyyksiä puhelinnumerosta %{phone}."
+    undo_send_email:
+      subject: "Laskunne yritykseltä %{company} on peruutettu"
+      undo_send_email: "Hei %{full_name},\n\nLaskunne numerolla %{invoice_id} on yrityksen %{company_name} \
+        puolesta peruutettu. Yksityiskohdista olkaa yhteydessä yritykseen puhelimitse %{phone_number} tai \
+        sähköpostitse %{email}."
+  photos:
+    header: Hallinta Paikka Kuvat
+  mailer:
+    booking:
+      subject: "%{venue_name} varausvahvistus %{date}"
+      notify_participant_subject: "Muutokset ryhmävaraukseen %{venue_name} %{date}"
+    user:
+      credit_card_reminder: Luottokorttimuistutus
+  activerecord:
+    errors:
+      validations:
+        email: 'on viallinen sähköpostiosoite'
+      models:
+        credit_cards:
+          cannot_destroy: 'Ei onnistuttu poistamaan korttia'
+        company:
+          attributes:
+            coupon_code:
+              inclusion: "on viallinen"
+        admin:
+          attributes:
+            reset_password_token:
+              blank: "on viallinen"
+              invalid: "on viallinen"
+        user:
+          attributes:
+            reset_password_token:
+              blank: "on viallinen"
+              invalid: "on viallinen"
+            email:
+              blank: ei voi olla tyhjä
+              taken: on jo varattu
+              invalid: viallinen
+            first_name:
+              blank: ei voi olla tyhjä
+            last_name:
+              blank: ei voi olla tyhjä
+            current_password:
+              invalid: on viallinen
+            password:
+              too_short: on liian lyhyt
+        email_list:
+          attributes:
+            name:
+              blank: ei voi olla tyhjä
+              taken: on jo käytössä
+        membership:
+          attributes:
+            reservations:
+              invalid: on viallinen
+            user:
+              blank: ei voi olla tyhjä
+            end_time:
+              max_duration_error: kesto voi olla enintään kaksi vuotta
+              in_the_past: on aiemmin
+              timing_order: pitää olla suurempi kuin aloitusaika
+            update_failure: Vakiovuoroa ei voitu päivittää
+        participation:
+          attributes:
+            reservation:
+              not_a_group_reservation: "pitäisi olla ryhmävaraus"
+              filled_group_reservation: ei vapaita paikkoja osallistua
+              already_participating: osallistuu jo ryhmään
+        group_member:
+          attributes:
+            group:
+              group_is_full: täynnä
+        group_season:
+          attributes:
+            group:
+              not_seasonal: ei ole kausiluonteinen
+            start_date:
+              has_overlapping: päälekkäinen toisen kauden kanssa
+      messages:
+        blank: 'ei voi olla tyhjä'
+    attributes:
+      court/court_name:
+        any: Kaikki
+        outdoor: Ulkokenttä
+        indoor: Sisäkenttä
+      court/sport_name:
+        tennis: Tennis
+        squash: Squash
+        badminton: Sulkapallo
+        floorball: Salibandy
+        golf: Golf
+        volleyball: Lentopallo
+        tabletennis: Pöytätennis
+        basketball: Koripallo
+        soccer: Jalkapallo
+        private: Yksityinen
+        any: Kaikki
+        spinning: Spinning
+        billiard: Biljardi
+        snooker: Snooker
+        gym: Kuntosali
+      user:
+        street_address: Katuosoite
+        city: Kaupunki
+        email: Sähköposti
+        first_name: Etunimi
+        last_name: Sukunimi
+        zipcode: Postinumero
+        phone_number: Puhelin
+        current_password: Nykyinen salasana
+        password: Salasana
+      reservation:
+        user: Käyttäjä
+        court: Kenttä
+        price: Hinta
+        start_time: Aloitusaika
+        end_time: Loppumisaika
+        overlapping_reservation: Päällekkäinen varaus
+        'Court': Kentän
+        payment_type:
+          paid: Maksettu
+          unpaid: Maksamaton
+          semi_paid: Osittain Maksettu
+        booking_type:
+          online: Tehty internetissä
+          admin: Ylläpitäjän tekemä
+          membership: Vakiovuoro
+          guest: Vieras
+      reservations_log:
+        status:
+          created: Luotu
+          updated: Päivitetty
+          paid: Maksettu
+          refunded: Hyvitetty
+          cancelled: Peruttu
+          reselling: Myynnissä
+          resold: Myydyt
+      memberships:
+        start_time: Aloitusaika
+        end_time: Loppumisaika
+        price: Hinta
+        user: Käyttäjä
+        venue: Keskuksen
+        weekday: Viikonpäivä
+        court_sport: Kentän urheilulaji
+        court: Kentän
+        email: Email
+      custom_invoice_component:
+        name: Laskutettavan nimi
+        price: Hinta
+        vat_decimal: Alv.
+      group:
+        venue: Keskus
+        owner: Omistaja
+        classification: Luokittelu
+        name: Nimi
+        participation_price: Osallistumisen hinta
+        max participants: Maksimi osallistujamäärä
+        primary_skill_level: Ensisijainen taitotaso
+        seasons: Vuodenajat
+        priced_duration:
+          session: Kertapohjanien
+          hour: Tuntipohjaineen
+          season: Kausipohjainen
+        cancellation_policy:
+          participation: Bonus-osallistuminen
+          refund: Hyvitys
+          no_refund: Ei hyvitystä
+      participation:
+        user: Käyttäjä
+        reservation: Varaus
+      group_member:
+        user: Käyttäjä
+        group: Ryhmä
+      group_season:
+        user: Käyttäjä
+        group: Ryhmä
+        start_date: Aloituspäivä
+        end_date: Päättymispäivä
+      group_subscription:
+        group_season: Ryhmän kausi
+        user: Käyttäjä
+      group_custom_biller:
+        groups: Ryhmät
+        company_business_type: Yrityksen tyyppi
+        bank_name: Pankin nimi
+        company_city: Kaupunki
+        company_iban: Pankkitili IBAN
+        company_bic:  SWIFT/BIC
+        company_legal_name: Yrityksen virallinen nimi
+        company_phone: Puhelin
+        company_street_address: Yrityksen osoite
+        company_tax_id: Verotunnus
+        company_website: Verkkosivut
+        company_zip: Postinumero
+        country: Yrityksen maa
+        invoice_sender_email: Sähköpostien lähettäjäosoite
+        tax_rate: Veroaste
+  activity_logs:
+    activity_logs: Tapahtumaloki
+    search_placeholder: Hae tapahtumia
+    end_date_placeholder: Loppuen
+    filter_start_date: Alkaen
+    filter_end_date: Loppuen
+    filter_payload_types: Tapahtuma
+    action_types: Muutos
+    time: Tapahtuma-aika
+    actor: Tekijä
+    actor_type: Tekijän rooli
+    action: Tapahtuma
+    description: Kuvaus
+    reservation: Varaus
+    membership: Vakiovuoro
+    invoice: Lasku
+    created: Luotu
+    updated: Päivitetty
+    cancelled: Peruutettu
+    sent: Lähetetty
+    error: Tapahtumia hakiessa tapahtui virhe.
+  game_pass:
+    game_pass: Sarjakortit
+    create_game_pass: Luo sarjakortti
+    update_game_pass: Päivittä sarjakortti
+    game_pass_list: Sarjakortit
+    user: Käyttäjä
+    total_charges: Käyttökerrat(Tunnit)
+    remaining_charges: Käyttökertoja jäljellä(Tunnit)
+    court_sports: Kentän urheilu
+    court_type: Kentän tyyppi
+    dates_limit: Päivämäärät raja
+    time_limitations: Aikarajoitukset
+    show_limitations: Rajoitukset
+    price: Hinta
+    active: Aktiivinen
+    actions: Toimet
+    confirm_delete_title: Poisto
+    confirm_delete_text: Sarjakortin poistetaan
+    confirm_delete_button: Poistaa
+    create_game_pass_modal:
+      create_game_pass_success: Sarjakortin luominen onnistunut
+      create_game_pass_error: Sarjakortin luominen epäonnistui
+      create_game_pass_form_not_filled: Täytä kaikki kentät ennen luomista
+      update_game_pass_success: Sarjakortin päivitys onnistunut
+      update_game_pass_error: Sarjakortin päivitys epäonnistui
+      delete_game_pass_success: Sarjakortin poisto onnistunut
+      delete_game_pass_error: Sarjakortin poisto epäonnistui
+      select_template: Valitse mallipohja
+      save_as_template: Tallenna mallipohjana
+      template_name: Mallipohjan nimi
+      custom_game_pass: Uusi Sarjakortti
+      user_shown_name: Käyttäjälle näkyvä nimi
+      select_user: Valitse käyttäjä
+      select_court_sports: Valitse urheilulajit
+      select_court_sports_placeholder: Kaikki urheilulajit
+      select_court_type: Valitse kentän tyyppi
+      start_date: Aloituspäivä
+      start_date_placeholder:  tyhjä - rajoittamaton
+      end_date: Päättymispäivä
+      end_date_placeholder: tyhjä - rajoittamaton
+      total_charges: Käyttökerrat(Tunnit)
+      remaining_charges: Käyttökertoja jäljellä(Tunnit)
+      price: Hinta
+      mark_as_paid: Merkitse maksettu
+      is_paid: Maksettu
+  memberships:
+    user:
+      address: Katuosoite
+      city: Kaupunki
+      email: Sähköposti
+      first_name: Etunimi
+      last_name: Sukunimi
+      zipcode: Postinumero
+      phone_number: Puhelin
+    import_errors:
+      failures: Virheet
+      invalid_reservations: "Virheellinen varaukseni:"
+  guests:
+    new:
+      full_name: Koko Nimi
+  admins:
+    edit:
+      button: Päivitä Ylläpitäjän tiedot
+      header: Muokkaa Ylläpitäjän tietoja
+    form:
+      auth_level: Valtuutuksen taso
+      birth_date: Syntymäpäivä
+      birth_day: Päivä
+      birth_month: Kuukausi
+      birth_year: Vuosi
+    index:
+      add_link: Lisää Ylläpitäjiä
+      header: Hallitse Ylläpitäjiä
+      list_title: Ylläpitäjät
+      search_placeholder: Etsi taulukosta
+      table_header_auth_level: Valtuutuksen taso
+      table_header_email: Sähköposti
+      table_header_name: Nimi
+      title: Hallinnoi yrityksesi Ylläpitäjiä
+    new:
+      button: Luo Ylläpitäjä
+      header: Lisää Ylläpitäjä
+    passwords:
+      edit:
+        change_password: Vaihda salasana
+        confirm_password_label: Vahvista uusi salasana
+        minimum_char_message: Vähintään %{minimum_password_length} merkkiä
+        new_password_label: Uusi salasana
+        title: Vaihda Ylläpitäjän salasanasi
+      new:
+        pass_reset_instruction: Lähetä ohjeet salasanan resetointiin
+    registrations:
+      edit:
+        header: Profiilisi
+        new_password: Uusi salasana (jätä tyhjäksi, jos et halua vaihtaa)
+        save_button: Tallenna muutokset
+        waiting_confirm: 'Odottaa vahvistusta sähköpostista: ${email}'
+      new:
+        birthday_title: Syntymäpäivä
+        header: Luo uusi Ylläpitäjän tunnus
+        save_button: Tallenna muutokset
+    sessions:
+      new:
+        login_button: Kirjaudu sisään
+        signup_link: Rekisteröidy
+        signup_link_text: Ei tunnusta vielä?
+    confirm_account:
+      confirmed: Hallinnollinen tili vahvistettiin
+  coaches:
+    confirm_account:
+      confirmed: Valmentajan tili vahvistettu
+    reports:
+      reservations: Varaukseet
+      coach_report: Valmentajan raportti
+      sport_name: Kentän urheilulaji
+      report_period: Raportointikausi
+      number_of_bookings: Varausten määrä
+      printed_on: Tulostettu
+      by: Tekijä
+      date: Päivämäärä
+      start_time: Aloitusaika
+      end_time: Lopetus
+      court: Kenttä
+      hours: Tuntia
+      revenue: Liikevaihto %{currency}
+      group_name: Ryhmä nimi
+      classification: Luokittelu
+      salary: Palkka %{currency}
+      payment_status: Maksun status
+      notes: Muistiinapnot
+      total: YHTEENSÄ
+
+  customers:
+    table:
+      id: Asiakastunnus
+      full_name: Asiakkaan nimi
+      email: Asiakkaan sähköposti
+      phone_number: Puhelinnumero
+      address: Osoite
+      outstanding_balance: Saldo
+      reservations_done: Tehdyt varaukset
+      last_reservation: Viimeisin varaus
+      lifetime_value: Elinikäinen arvo
+      actions: Toimenpide
+      search_placeholder: Etsi taulukosta
+      empty: 'Asiakasta ei löytynyt'
+      create_customer: Luo asiakas
+      confirm_delete_title: Poistaminen
+      confirm_delete_text: Poistaa asiakkaan lopullisesti
+      confirm_delete_button: Poista
+      delete_success: Asiakkaan poisto onnistui
+      delete_failed: Asiakkaan poisto epäonnistui
+    modal:
+      title_create: Luo Asiakas
+      title_update: Päivitys asiakastietoja
+      form_not_filled: Täytä kaikki kentät ennen luomista
+      submit_button_create: Luo
+      submit_button_update: Päivitä
+      create_success: Asiakkaan luominen onnistunui
+      create_failed: Asiakkaan luominen epäonnistui
+      update_success: Asiakkaan päivitys onnistunui
+      update_failed: Asiakkaan päivitys epäonnistui
+      first_name: Etunimi
+      last_name: Sukunimi
+      email: Sähköposti
+      phone_number: Puhelinnumero
+      city: Kaupunki
+      street_address: Katuosoite
+      zipcode: Postinumero
+      existing_customer_connected: Asiakas on jo olemassa ja kytkettiin keskuksen.
+
+  companies:
+    company_business_type:
+      - - Osakeyhtiö
+        - Osakeyhtiö
+      - - Toiminimi
+        - Toiminimi
+      - - Avoin yhtiö / Kommandiittiyhtiö
+        - Avoin yhtiö / Kommandiittiyhtiö
+      - - Julkinen Osakeyhtiö
+        - Julkinen Osakeyhtiö
+      - - Rekisteröity yhdistys
+        - Rekisteröity yhdistys
+    customers:
+      header: Asiakaslista
+      import: Tuo Asiakkaita
+      download_csv_template: Lataa CSV-esimerkkitiedosto
+      upload_button: Tuo
+      csv_file: CSV tiedosto
+      venue: Keskuksen nimi
+      importing: Tuominen...
+    edit:
+      button: Tallenna muutokset
+      company_business_type:
+      - - Osakeyhtiö
+        - Osakeyhtiö
+      - - Toiminimi
+        - Toiminimi
+      - - Avoin yhtiö / Kommandiittiyhtiö
+        - Avoin yhtiö / Kommandiittiyhtiö
+      - - Julkinen Osakeyhtiö
+        - Julkinen Osakeyhtiö
+      - - Rekisteröity yhdistys
+        - Rekisteröity yhdistys
+      header: 'Muokkaa tietoja: %{name}'
+      invoice_sender_email_placeholder: "Oletuksena: %{email}"
+    form:
+      button: Tallenna muutokset
+      company_business_type:
+      - - Osakeyhtiö
+        - Osakeyhtiö
+      - - Toiminimi
+        - Toiminimi
+      - - Avoin yhtiö / Kommandiittiyhtiö
+        - Avoin yhtiö / Kommandiittiyhtiö
+      - - Julkinen Osakeyhtiö
+        - Julkinen Osakeyhtiö
+      - - Rekisteröity yhdistys
+        - Rekisteröity yhdistys
+      title: Muokkaa yrityksen tietoja
+    new:
+      company_business_type:
+      - - Osakeyhtiö
+        - Osakeyhtiö
+      - - Toiminimi
+        - Toiminimi
+      - - Avoin yhtiö / Kommandiittiyhtiö
+        - Avoin yhtiö / Kommandiittiyhtiö
+      - - Julkinen Osakeyhtiö
+        - Julkinen Osakeyhtiö
+      - - Rekisteröity yhdistys
+        - Rekisteröity yhdistys
+      create_button: Luo
+      stripe_term_accept_html: Hyväksyn <a href="%{link}"> Stripe Terms of Service</a>
+    report:
+      header: "%{name} raportit"
+      pdf_link: Avaa PDF
+      table_header_amount: Siirron summa
+      table_header_date: Siirron päiväys
+      title: Raportit
+      transfers_title: Siirrot
+    reports:
+      download_button: Lataa raportti
+      download_title: Lataa raportti maksutransaktioista
+      from: Raportin aloituspäivä
+      header: "%{name} raportit"
+      title: Raportit
+      to: Raportin lopetuspäivä
+      transfers_title: Siirrot
+      invoices_report: Invoices report
+    show:
+      balance_title: Saldo
+      customers_title: Asiakkaat
+      day: Päivä
+      month: Kuukausi
+      monthly: Kuukausittainen
+      notifications_msg: Sinulla on ${msgs} viestiä ja %{notifications} ilmoitusta.
+      popup_msg: Playven Dashboard
+      popup_welcome: Playven Dashboard
+      reservations_title: Varaukset
+      revenue_title: Tuotot
+      total: Yhteensä
+      welcome_msg: Tervetuloa %{name}
+      year: Vuosi
+    transfer_details:
+      table_head_amount: Veloita summa
+      table_head_date: Veloita päivä
+      table_head_fee: Veloita maksu
+      table_head_net: Veloita netto
+      table_head_type: Veloita tyyppi
+    customers_import:
+      failures: Virheet
+    taxes:
+      sales_tax: Sales Tax
+      vat: ALV
+  courts:
+    court:
+      active: Aktiivinen
+      closed: Suljettu
+      on_sale: Myynnissä
+      shared_court: Shared Court
+      private: '(luottamuksellinen)'
+    edit:
+      cancel_button: Peru
+      header: Muokkaa kenttää
+      submit_button: Päivitä
+    form:
+      private_title: Onko kenttä yksityinen
+      active_title: Onko kenttä aktiivinen
+      must_pay_title: Käyttäjä voi ohittaa maksu
+      duration_policy_title: Varauksen keston rajat
+      durations:
+        any_duration: Tyhjä
+        half_hour: Puoli tuntia (30 minuuttia)
+        one_hour: Yksi Tunti (60 minuuttia)
+        two_hour: Kaksi tuntia (120 minuuttia)
+      indoor_outdoor:
+        indoor: Sisäkenttä
+        outdoor: Ulkokenttä
+      indoor_outdoor_title: Sisä/ulkokenttä
+      sport_name:
+        - - Sulkapallo
+          - Sulkapallo
+        - - Keilaus
+          - Keilaus
+        - - Golf
+          - Golf
+        - - Squash
+          - Squash
+        - - Tennis
+          - Tennis
+        - - Spinning
+          - Spinning
+        - - Biljardi
+          - Biljardi
+        - - Snooker
+          - Snooker
+        - - Kuntosali
+          - Kuntosali
+      start_time:
+        any_start_time: Tyhjä
+        half_hour_mark: Puolikas tunti (8:30, 9:30, jne...)
+        quarter_hour_mark: Neljännes tunti (8:15, 9:45, jne...)
+        hour_mark: Täysi tunti (8:00, 9:00, jne...)
+      start_time_policy_title: Vuoron aloitusaika
+      share_court: Share Court
+      select_shared_court_label: 'Share court with:'
+    show:
+      payment_skippable: Ohittaminen maksu sallittu
+      payment_not_skippable: Ohittaminen maksu kielletty
+      add_title: Lisää uusi kenttä
+      confirm_msg: Oletko varma?
+      court_description: 'Kentän kuvaus:'
+      court_info: 'Kentän tiedot:'
+      court_sport: 'Kentän urheilulaji:'
+      edit_link: 'Muokkaa kenttää:'
+      from: Alkaen
+      prices_friday: Hinnat perjantaisin
+      prices_monday: Hinnat maanantaisin
+      prices_saturday: Hinnat lauantaisin
+      prices_sunday: Hinnat sunnuntaisin
+      prices_thursday: Hinnat torstaihin
+      prices_title: 'Voimassaolevat hintasi:'
+      prices_tuesday: Hinnat tiistaisin
+      prices_wednesday: Hinnat keskiviikkoisin
+      remove_link: Poista
+      to: asti
+    delete:
+      confirm_title: Oletko varma?
+      confirm_text: Olet poistamassa kenttä pysyvästi
+      button_text: "Kyllä, poista se!"
+      success_text: "Kenttä poistaminen onnistui."
+    sport_name:
+      - - Sulkapallo
+        - Sulkapallo
+      - - Keilaus
+        - Keilaus
+      - - Golf
+        - Golf
+      - - Squash
+        - Squash
+      - - Tennis
+        - Tennis
+      - - Spinning
+        - Spinning
+      - - Biljardi
+        - Biljardi
+      - - Snooker
+        - Snooker
+      - - Kuntosali
+        - Kuntosali
+  date:
+    abbr_day_names:
+      - Su
+      - Ma
+      - Ti
+      - Ke
+      - To
+      - Pe
+      - La
+    abbr_month_names:
+      -
+      - Tam
+      - Hel
+      - Maa
+      - Huh
+      - Tou
+      - Kes
+      - Hei
+      - Elo
+      - Syy
+      - Lok
+      - Mar
+      - Jou
+    day_names:
+      - Sunnuntai
+      - Maanantai
+      - Tiistai
+      - Keskiviikko
+      - Torstai
+      - Perjantai
+      - Lauantai
+    formats:
+      default: "%d/%m/%Y"
+      long: "%B %d, %Y"
+      short: "%b %d"
+      easy: '%d/%m/%Y %H:%M'
+    month_names:
+      -
+      - Tammikuu
+      - Helmikuu
+      - Maaliskuu
+      - Huhtikuu
+      - Toukokuu
+      - Kesäkuu
+      - Heinäkuu
+      - Elokuu
+      - Syyskuu
+      - Lokakuu
+      - Marraskuu
+      - Joulukuu
+    order:
+      - day
+      - month
+      - year
+  devise:
+    confirmations:
+      confirmed: Sähköpostiosoitteesi on vahvistettu onnistuneesti.
+      new:
+        header: Lähetä vahvistusohjeet uudelleen
+        submit_button: Lähetä vahvistusohjeet uudelleen
+      send_instructions: Saat muutaman minuutin päästä sähköpostin, jossa on vahvistusohjeet.
+      send_paranoid_instructions: Jos sähköpostiosoitteesi on tietokannassamme, saat muutaman minuutin päästä sähköpostin, jossa on vahvistusohjeet.
+      show:
+        header: Tervetuloa Playveniin! Luo uusi salasana turvataksesi tilisi
+        submit_button: Luo salasana
+    failure:
+      already_authenticated: Olet jo kirjautunut sisään.
+      inactive: Tilisi ei vielä ole aktivoitu.
+      invalid: Virheellinen %{authentication_keys} tai salasana.
+      last_attempt: Yksi yritys jäljellä ennen tilin lukitsemista.
+      locked: Tilisi on lukittu.
+      not_found_in_database: Virheellinen %{authentication_keys} tai salasana.
+      timeout: Istunto on päättynyt. Kirjaudu uudelleen sisään jatkaaksesi.
+      unauthenticated: Luo tili tai kirjaudu sisään jatkaaksesi.
+      unconfirmed: Vahvista sähköpostiosoitteesi jatkaaksesi.
+    mailer:
+      confirmation_instructions:
+        content: 'Vahvista sähköpostisi allaolevasta linkistä:'
+        header: Tervetuloa %{email}
+        link_label: Vahvista tili
+        subject: Vahvistusohjeet
+        playven_user_account_text_html: "Playven-käyttäjätilisi avulla voit jatkossa tehdä \
+          tennisvarauksesi sivuiltamme %{link} ja hoitaa maksutkin helposti \
+          ja turvallisesti. Laajennamme kokoajan urheilukeskus tarjontaamme ja tarkoituksemme \
+          on olla sivusto, josta voit varata kaikki tennis, squash sekä sulkapallopelit!"
+        confirmation_link: Vahvista käyttäjätunnus
+        regards: Terveisin
+        playven: Playven
+      user_without_venue:
+        welcome_message: "Tervetuloa Playvenin käyttäjäksi!"
+        complete_confirmation_by_email: "Viimeistele rekisteröitymisesi vielä vahvistamalla sähköpostiosoitteesei."
+      user_with_venue:
+        user_created: "%{venue} on luonut sinulle tilin Playveniin"
+        complete_confirmation_by_email: Viimeistele rekisteröitymisesi vielä vahvistamalla sähköpostiosoitteesei ja luo käyttäjätunnuksellesi salasana. Tämän jälkeen olet valmis käyttämään Playvenia!
+      password_change:
+        content: Otamme sinuun yhteyttä vahvistaaksemme salasanan muutoksen
+        header: Hei %{email}!
+        subject: Salasana muutettu
+      reset_password_instructions:
+        content: 'Joku on pyytänyt linkin salasananvaihtoon. Salasanan voi vaihtaa allaolevasta linkistä:'
+        header: Hei %{name}!
+        instruction_line1: Jos et ole pyytänyt tätä sähköpostia, voit jättää sen huomiotta.
+        instruction_line2: Salasanasi ei muutu, ennen kuin luot uuden allaolevan linkin kautta.
+        link_label: Muuta salasana
+        subject: Ohjeet salasanan vaihtamiseen
+      unlock_instructions:
+        content: Tilisi on lukittu johtuen liian monesta epäonnistuneesta kirjautumisyrityksestä.
+        header: Hei %{email}
+        instruction_line: 'Klikkaa allaolevaa linkkiä avataksesi tilisi uudelleen:'
+        link_label: Poista tilin lukitus
+        subject: Ohjeet lukituksen poistamiseen
+    omniauth_callbacks:
+      failure: Sinua ei voitu vahvistaa %{kind} koska %{reason}.
+      success: Onnistuneesti vahvistettu tilistä %{kind}.
+    passwords:
+      edit:
+        header: Vaihda salasana
+        confirm_password_label: Vahvista uusi salasana
+        min_len: Vähintään %{num} merkkiä
+        password_label: Uusi salasana
+        submit_button: Muuta salasana
+      new:
+        header: Unohditko salasanasi?
+        submit_button: Lähetä ohjeet salasanan resetointiin
+      no_token: Sinulla ei ole oikeutta tarkastella sivua. Jos saavuit salasanan resetointisähköpostin kautta, varmista, että sivun URL on oikein.
+      send_instructions: Saat muutaman minuutin kuluttua sähköpostin, jossa on ohjeet salasanan resetointiin.
+      send_paranoid_instructions: Jos sähköpostiosoitteesi on tietokannassamme, saat muutaman minuutin kuluttua linkin salasanan resetointiin.
+      updated: Salasanasi on muutettu onnistuneesti. Olet nyt kirjautunut sisään.
+      updated_not_active: Salasanasi on muutettu onnistuneesti.
+    registrations:
+      destroyed: Näkemiin! Tilisi on onnistuneesti suljettu. Toivomme näkevämme sinut pian uudelleen!
+      edit:
+        add_new_card_button: Lisää uusi
+        edit_profile: Muokkaa profiilia
+        form_title: Muokkaa tietojasi
+        header: Profiilisi
+        invoices: Laskut
+        last_updated: muokattu viimeksi %{date}
+        my_reservations: Omat varaukseni
+        no_cards_message: Sinulla ei ole luottokorttia tililläsi
+        payment_method: Maksutapa
+        save_changes: Tallenna muutokset
+      signed_up: Tervetuloa! Olet onnistuneesti luonut tilin.
+      signed_up_but_inactive: Olet onnistuneesti luonut tilin, mutta tilisi ei ole vielä aktivoitu.
+      signed_up_but_locked: Olet onnistuneesti luonut tilin, mutta tilisi on lukittu.
+      signed_up_but_unconfirmed: Viesti vahvistuslinkillä on lähetetty sähköpostiisi. Seuraa linkkiä aktivoidaksesi tilisi.
+      update_needs_confirmation: Päivitit tilisi onnistuneesti, mutta sähköpostiosoitteesi pitää vielä vahvistaa. Seuraa sähköpostin vahvistuslinkkiä vahvistaaksesi uuden osoitteesi.
+      updated: Tilisi on päivitetty onnistuneesti.
+    sessions:
+      already_signed_out: Onnistuneesti kirjattu ulos
+      new:
+        forgot_password: Unohditko?
+        signup: Luo tili / kirjaudu sisään
+        signup_message: Eikö sinulla ole tiliä?
+      signed_in: Onnistuneesti kirjauduttu sisään.
+      signed_out: Onnistuneesti kirjauduttu ulos
+    shared:
+      links:
+        confirmations: Etkö saanut vahvistusohjeita?
+        forgot_password: Unohditko salasanasi?
+        login: Kirjaudu sisään
+        sign_in_with: Kirjaudu sisään %{with}
+        signup: Luo tili
+        unlock: Etkö saanut tilinavausohjeita
+    unlocks:
+      new:
+        header: Lähetä tilinavausohjeet uudelleen
+        unlock_button: Lähetä tilinavausohjeet uudelleen
+      send_instructions: Saat muutaman minuutin kuluttua sähköpostin, jossa on ohjeet tilin avaamiseen.
+      send_paranoid_instructions: Jos tilisi on luotu, saat hetken kuluttua sähköpostin, jossa on ohjeet tilin avaamiseen.
+      unlocked: Tilisi lukitus on poistettu onnistuneesti. Kirjaudu sisään jatkaaksesi.
+  discounts:
+    shared:
+      percentage: Prosentti
+      fixed: Kiinteä
+    edit:
+      header: Muuta alennusta
+      submit_button: Päivitä alennus
+    index:
+      table_head_name: Nimi
+      table_head_value: Arvo
+      table_head_method: Alennus tyyppi
+    new:
+      header: Lisää alennus
+      submit_button: Luo alennus
+    form:
+      round_text: Pyöreä lopullinen hinta lähimpään Euro.
+    show:
+      rounded: Pyöristetty
+  enumerize:
+    admin:
+      levels:
+        cashier: Työntekijä
+        god: Pääylläpitäjä
+        guest: N/A
+        manager: Esimies
+  errors:
+    messages:
+      accepted: täytyy olla hyväksytty
+      blank: ei voi olla sisällötön
+      confirmation: ei vastaa varmennusta
+      empty: ei voi olla tyhjä
+      equal_to: täytyy olla yhtä suuri kuin %{count}
+      even: täytyy olla parillinen
+      exclusion: on varattu
+      greater_than: täytyy olla suurempi kuin %{count}
+      greater_than_or_equal_to: täytyy olla suurempi tai yhtä suuri kuin %{count}
+      inclusion: ei löydy listasta
+      invalid: on kelvoton
+      less_than: täytyy olla pienempi kuin %{count}
+      less_than_or_equal_to: täytyy olla pienempi tai yhtä suuri kuin %{count}
+      not_a_number: ei ole luku
+      not_an_integer: ei ole kokonaisluku
+      odd: täytyy olla pariton
+      taken: on jo käytössä
+      too_long: on liian pitkä (saa olla enintään %{count} merkkiä)
+      too_short: on liian lyhyt (oltava vähintään %{count} merkkiä)
+      wrong_length: on väärän pituinen (täytyy olla täsmälleen %{count} merkkiä)
+      already_confirmed: Vahvistettu jo, yritä kirjautua uudelleen sisään
+      confirmation_period_expired: Pitää vahvistaa %{period} sisällä, pyydä uusi
+      expired: Vanheutunut, pyydä uusi
+      not_found: Ei löydy
+      not_locked: Ei lukittu
+      not_saved:
+        one: '1 virhe esti %{resource} tallentamisen:'
+        other: "%{count} virhettä esti %{resource} tallentamisen:"
+    reservation:
+      user:
+        cannot_be_participant: cannot be a participant
+      court:
+        closed: Kenttä on suljettu valituksi ajaksi
+      end_time:
+        timing_order: tulee olla suurempi kuin Aloitusaika
+        duration_problem: Tämä kenttä ei salli valittua kestoa.
+        max_consecutive_hours: ei voi varata yli %{expected} peräkkäistä tuntia, yrittää varata %{given}
+        max_hours_per_day: ei voi varata yli %{expected} tuntia päivässä, yrittää varata %{given}
+      start_time:
+        in_the_future: ei voi olla menneisyydessä
+        day_off: Valitsemasi päivä on vapaapäivä.
+        days_in_advance: Voit varata vain %{limit} päivää etukäteen.
+        zero: Voit varata vain alkaen täysi tunneista (9:00, 10:00 jne...)
+        half: Voit varata vain alkaen puolikkaista tunneista (9:30, 10:30 jne...)
+        quarter: Voit varata vain alkaen neljäsosa tunneista (9:15, 10:45, jne...)
+      overlapping: Päällekkäinen varaus %{user_name}
+      game_pass:
+        not_found: ei löydy
+        not_available: ei ole käytettävissä
+      card_payment_error: 'ei maksa valitulla kortilla'
+      unknown_payment_method: 'tuntematon maksutapa'
+    venue:
+      list:
+        court_empty: Vähintään yksi kenttä pitää olla listattuna
+        days_empty: Aukioloajat jokaiselle päivälle pitää olla listattuna
+        photos_empty: Vähintään yksi kuva pitää olla listattuna
+        price_not_specifying: Kentällä on oltava vähintään yksi hinta määriteltynä.
+        company: "lisää kaikki vaadittavat yrityksen tiedot"
+        fri: Perjantai
+        mon: Maanantai
+        sat: Lauantai
+        sun: Sunnuntai
+        thu: Torstai
+        tue: Tiistai
+        wed: Keskiviikko
+      business_hours:
+        opening: "Avaamisaika päivänä %{day} on viallinen"
+        closing: "Sulkemisaika päivänä %{day} on viallinen"
+        timing: "Sulkemisajan tulee olla myöhemmin kuin avaamisaika päivänä:%{day}"
+    membership:
+      weekday: "ei voi kääntää arkipäivinä '%{weekday}', käytä jotain: maanantai, tiistai..."
+      court_sport: "ei voi kääntää court_sport '%{sport}', käytä jotain: %{defaults}"
+      no_court: "'%{name}' ei löytynyt"
+      email: "käyttäjän sähköpostin '%{email}' ei ole olemassa"
+    company:
+      stripe: Ei voi luoda tilin!
+    price:
+      minimum: "ei voi olla alle 2"
+    coach:
+      unavailable: "%{name} ei ole käytettävissä"
+    stripe:
+      negative_amount: "Maksun määrä on riittämätön. Kokonaismäärä on %{amount}, jolloin tapahtuman summa on %{venue_amount}"
+    settings:
+      update_failed: Asetusarvon päivittäminen epäonnistui
+      invalid_scope: Virheelliset asetukset
+      invalid_owner: Virheellinen asetusten omistaja
+      invalid_name: Virheellinen asetusten nimi
+  helpers:
+    label:
+      admin:
+        admin_ssn: Sosiaaliturvatunnus
+        current_password: Nykyinen salasana
+        email: Sähköposti
+        first_name: Etunimi
+        last_name: Sukunimi
+        password: Salasana
+        password_confirmation: Salasanan vahvistus
+      company:
+        company_business_type: Yrityksen tyyppi
+        company_city: Kaupunki
+        company_iban: Pankkitili IBAN
+        company_bic:  SWIFT/BIC
+        company_legal_name: Yrityksen virallinen nimi
+        company_phone: Puhelin
+        company_street_address: Yrityksen osoite
+        company_tax_id: Verotunnus
+        company_website: Verkkosivut
+        company_zip: Postinumero
+        company_country: Yrityksen maa
+        invoice_sender_email: Sähköpostien lähettäjäosoite
+        usa_routing_number: Reittinumero
+        usa_ssn_last_4: Viimeiset 4 numeroa sosiaaliturvatunnus
+        usa_state: osavaltio
+
+      court:
+        court_description: Kentän kuvaus
+        court_name: Kentän nimi
+        sport_name: Kentän urheilulaji
+        custom_name: Erikoisresurssi
+        private: Yksityinen
+      discount:
+        name: Alennuksen nimi
+        value: Arvo
+        method: Alennus tyyppi
+      venue:
+        booking_ahead_limit: Varaamisraja päivissä
+        cancellation_time: Peruutusraja tunneissa
+        allow_overlapping_resell: Salli vakiovuorojen jälleenmyyminen pienemmissä pituuksissa kuin alkuperäinen varaus
+        city: Kaupunki
+        description: Keskuksen kuvaus
+        friday_closing_time: Perjantai
+        friday_opening_time: Perjantai
+        monday_closing_time: Maanantai
+        monday_opening_time: Maanantai
+        parking_info: Pysäköintitiedot
+        phone_number: Puhelin
+        saturday_closing_time: Lauantai
+        saturday_opening_time: Lauantai
+        street: Katuosoite
+        sunday_closing_time: Sunnuntai
+        sunday_opening_time: Sunnuntai
+        thursday_closing_time: Torstai
+        thursday_opening_time: Torstai
+        transit_info: Julkinen liikenne
+        tuesday_closing_time: Tiistai
+        tuesday_opening_time: Tiistai
+        venue_name: Keskuksen nimi
+        website: Verkkosivut
+        wednesday_closing_time: Keskiviikko
+        wednesday_opening_time: Keskiviikko
+        zip: Postinumero
+        invoice_fee: Laskutuslisä
+    placeholder:
+      admin:
+        admin_ssn: Sosiaaliturvatunnus
+        current_password: Salasana
+        email: Sähköposti
+        first_name: Etunimi
+        last_name: Sukunimi
+        password: Salasana
+        password_confirmation: Salasanan vahvistus
+      company:
+        company_city: Kaupunki
+        company_iban: IBAN
+        company_legal_name: Yrityksen virallinen nimi
+        company_phone: Puhelin
+        company_street_address: Osoite
+        company_tax_id: Verotunnus
+        company_website: Verkkosivut
+        company_zip: Postinumero
+      court:
+        court_description: Kentän kuvaus
+        court_name: Kentän nimi
+        sport_name: Kentän urheilulaji
+        custom_name: Erikoisresurssi
+        private: Yksityinen
+      discount:
+        name: Alennuksen nimi
+        percentage: Prosentti
+      user:
+        city: Kaupunki
+        country: Maa
+        email: Sähköposti
+        first_name: Etunimi
+        last_name: Sukunimi
+        password: Salasana
+        password_confirmation: Salasanan vahvistus
+        phone_number: Puhelin
+        street_adress: Katuosoite
+        zipcode: Postinumero
+      venue:
+        booking_ahead_limit: "#"
+        city: Kaupunki
+        description: Kuvaus
+        friday_closing_time: "#"
+        friday_opening_time: "#"
+        monday_closing_time: "#"
+        monday_opening_time: "#"
+        parking_info: Pysäköinti
+        phone_number: Puhelin
+        saturday_closing_time: "#"
+        saturday_opening_time: "#"
+        street: Katuosoite
+        sunday_closing_time: "#"
+        sunday_opening_time: "#"
+        thursday_closing_time: "#"
+        thursday_opening_time: "#"
+        transit_info: Saapumisohjeet
+        tuesday_closing_time: "#"
+        tuesday_opening_time: "#"
+        venue_name: Keskuksen nimi
+        website: Verkkosivut
+        wednesday_closing_time: "#"
+        wednesday_opening_time: "#"
+        zip: Postinumero
+        invoice_fee: Laskutuslisä
+    select:
+      prompt: Valitse...
+  invoices:
+    send_all:
+      success:
+        one: 'One invoice was sent out successfully'
+        other: "%{count} invoices were sent out successfully"
+    unsend_all:
+      one: 'One invoice was returned to drafts successfully'
+      other: "%{count} laskua palautettiin luonnoksiin"
+    custom_invoice_modal:
+      delete_link: Poista
+      user: Valitse käyttäjä
+      header: Erillislasku
+      submit_button: Luo
+      table_head_name: Nimi
+      table_head_price: Hinta
+      table_head_vat: ALV
+      add_custom_component: Lisää laskutettava
+      vat: ALV
+      create_success: Uusi laskuluonnos luotu
+      create_fail: Laskun luominen epäonnistui
+      no_cic_error: Laskussa oltava vähintään yksi laskutettava
+      no_user_error: Valitse käyttäjä
+    create_invoices:
+      header: Luo laskuja
+      all: Kaikki käyttäjät
+      saved: Tallennetut Käyttäjät
+      recent: Viimeisimmät Käyttäjät
+      memberships: Toistuvat Varaukset Käyttäjät
+      submit_button: Luo laskuja
+      table_head_action: Valitse kaikki
+      table_head_balance: Saldo
+      table_head_email: Asiakkaan sähköposti
+      table_head_id: Asiakastunnus
+      table_head_name: Asiakkaan nimi
+      search_placeholder: Etsi taulukosta
+      remove_from_saved: Poista tallennettu
+      save_label: Tallenna tämä luettelo käyttäjistä myöhempää käyttöä varten
+      create_for_all: Luo lasku kaikille tämän tyypin käyttäjille
+      no_users_selected: Valitse käyttäjiä
+      nothing_to_invoice: Valitulla laskutuskaudella ei ollut maksamattomia vuoroja
+      success:
+        one: 'Yksi laskuluonnos luotu.'
+        other: '%{count} laskuluonnosta luotu onnistuneesti'
+    drafts_table:
+      cancel_link: Peruuta
+      delete_confirm: Haluatko varmasti poistaa laskun?
+      delete_link: Poista
+      delete_selected_confirm: Haluatko varmasti poistaa valitut laskut?
+      delete_selected_link: Poista valitut
+      print_selected_link: Lataa valitut
+      print_selected_confirm: Haluatko varmasti ladata valitut laskut?
+      edit_link: Muokkaa
+      invoice:
+        table_head_action: Valitse kaikki
+        table_head_court: Kenttä
+        table_head_date: Päivämäärä
+        table_head_end_time: Loppumisaika
+        table_head_price: Hinta
+        table_head_start_time: Aloitusaika
+        table_head_game_pass: Sarjakortin nimi
+        table_head_custom_name: Laskutettavan nimi
+        table_head_vat: ALV-%
+      pdf_link: Avaa PDF
+      search_placeholder: Etsi taulukosta
+      send_confirm: Haluatko varmasti lähettää valitut laskut?
+      send_link: Lähetä valitut
+      due_date: Valitse eräpäivä
+      table_head_email: Asiakkaan sähköposti
+      table_head_name: Asiakkaan nimi
+      table_head_reference_number: Laskun Viitenumero
+      table_head_pdf: Näytä PDF
+      table_head_action: Valitse kaikki
+      table_head_total: Laskun summa
+      total: 'Yhteensä:'
+      add_custom: Lisää muu laskutettava
+      custom_component_created: Laskutettava lisätty
+    custom_invoice_component_form:
+      name: Laskutettavan nimi
+      price: Hinta
+      vat: Alv.
+      select: Valitse
+      cancel: Peruuta
+      create: Luo
+      creating: Luodaan...
+    index:
+      create_invoices: Luo laskuja
+      invoices: Laskut
+      create_custom_invoice: Luo irtolasku
+    invoice_list:
+      drafts: Luonnokset
+      paid: Maksetut laskut
+      search_placeholder: Etsi taulukosta
+      table_head_id: Laskun tunnus
+      table_head_name: Asiakkaan nimi
+      table_head_reference_number: Laskun Viitenumero
+      table_head_billing_date: Laskutuspäivä
+      table_head_due_date: Eräpäivä
+      table_head_paid: Maksettu
+      table_head_total: Yhteensä
+      table_head_action: Valitse kaikki
+      table_head_pdf: Näytä PDF
+      pdf_link: Avaa PDF
+      updaid: Maksamattomat laskut
+      send_confirm: Haluatko varmasti lähettää valitut laskut?
+      resend_link: Lähetä muistutukset
+      draft_selected_confirm: Oletko varma, että haluat palauttaa valitut laskut luonnoksiin?
+      draft_selected_link: Palauta valitut laskut luonnoksiin
+      mark_paid_confirm: Haluatko varmasti merkitä valitut laskut maksetuiksi?
+      mark_paid_link: Merkitse maksetuksi
+      mark_paid_title: Merkitse kaikki laskut maksetuiksi
+      print_selected_link: Lataa valitut
+      print_selected_confirm: Haluatko varmasti ladata valitut laskut?
+    invoice_table:
+      table_head_court: Kenttä
+      table_head_end_time: Loppumisaika
+      table_head_price: Hinta
+      table_head_start_time: Alkamisaika
+      total: 'Yhteensä:'
+    send_invoices:
+      email_invoices_link: Sähköpostilaskut
+      mail_link: Postita laskut
+      notification_link: Lähetä Playven-ilmoitus
+      paid_link: Maksetut laskut
+      search_placeholder: Etsi taulukosta
+      table_head_action: Valitse kaikki
+      table_head_id: Laskun tunnus
+      table_head_name: Asiakkaan nimi
+      table_head_paid: Maksettu
+      updaid_link: Maksamattomat laskut
+    show:
+      table_head_court: Kenttä
+      table_head_end_time: Loppumisaika
+      table_head_price: Hinta
+      table_head_start_time: Alkamisaika
+      total: 'Yhteensä:'
+    mark_paid:
+      success:
+        one: "%{count} laskua merkittiin maksetuksi."
+        other: "%{count} laskua merkittiin maksetuksi."
+    custom_invoice_components:
+      credit_discount: Alennus negatiivisesta saldosta
+      credit_addition: Salon lisäys laskulle
+  layouts:
+    footer:
+      blog: Blogi
+      careers: Urat
+      download_ios_html: |-
+        <span>Lataa&nbsp;appi</span>
+        <small>iPhonelle</small>
+      download_text_html: Löydä uusia pelikavereita urheilemaan
+      follow: Seuraa meitä
+      help: Tuki
+      privacy: Tietosuojakäytäntö
+      terms: Käyttöehdot
+    navigation:
+      activity_logs_link: Activity Log
+      game_pass_link: Sarjakortit
+      add_venue_link: Lisää keskus
+      customers_link: Asiakkaat
+      discounts_link: Alennukset
+      edit_admin_link: Muokkaa Ylläpitäjäprofiilia
+      edit_company_link: Muokkaa yrityksen asetuksia
+      edit_venue_link: Muokkaa keskusta
+      invoices_link: Laskut
+      logout_link: Kirjaudu ulos
+      manage_admins_link: Hallinnoi Ylläpitäjiä
+      manage_venue_link: Hallinnoi keskusta
+      memberships: Vakiovuorot
+      memberships_link: Vakiovuorot
+      edit_emails_link: Sähköpostit
+      reports_link: Raportit
+      reservations_link: Varaukset
+      cancelled_reservations_link: Peruutettu varaukset
+      settings: Asetukset
+      venue_reports_link: Raportit
+    topnavbar:
+      messages_link: Viestit
+    mailers:
+      best_playven:
+        regards: "Terveiset"
+        playven: "Playven"
+      footer:
+        booking_provided_by: "Varaukset toimitetaan"
+        questions_email: "Kysymyksiä? Sähköposti"
+  number:
+    currency:
+      format:
+        delimiter: ","
+        format: "%u%n"
+        precision: 2
+        separator: "."
+        significant: false
+        strip_insignificant_zeros: false
+        unit: "€"
+    format:
+      delimiter: ","
+      precision: 3
+      separator: "."
+      significant: false
+      strip_insignificant_zeros: false
+    human:
+      decimal_units:
+        format: "%n %u"
+        units:
+          billion: Miljardi
+          million: Miljoona
+          quadrillion: Kvadriljoona
+          thousand: Tuhat
+          trillion: Triljoona
+          unit:
+      format:
+        delimiter:
+        precision: 3
+        significant: true
+        strip_insignificant_zeros: true
+      storage_units:
+        format: "%n %u"
+        units:
+          byte:
+            one: Bitti
+            other: Bitit
+          eb: EB
+          gb: GB
+          kb: KB
+          mb: MB
+          pb: PB
+          tb: TB
+    percentage:
+      format:
+        delimiter:
+        format: "%n%"
+    precision:
+      format:
+        delimiter:
+  pages:
+    home:
+      duration: 60 minuuttia
+      find_venue: Etsi aikoja
+      header: Löydä vapaat kentät läheltäsi ja varaa helposti
+      header_lead: Löydä vapaat kentät läheltäsi ja varaa helposti
+      help: Tuki
+      join_button: Rekisteröidy käyttäjäksi
+      join_content: Tervetuloa mukaan Playveniin! Playvenin avulla voit etsiä yhdellä haulla vapaita vuoroja samanaikaisesti kaikista mukana olevista urheilukeskuksista. Valitset vain lajisi ja haluamasi peliajan ja yhden klikkauksen jälkeen näet kaikki lähialueesi urheilupaikat mistä löytyy vapaita vuoroja sekä niiden hinnat. Rekisteröidy käyttäjäksi ja voit aloittaa käytön heti. Ilman rekisteröitymistä voi selata vapaita aikoja. Varaaminen edellyttää rekisteröitymistä.
+      join_header: PLAYVEN ON UUSI TAPA LÖYTÄÄ LÄHIALUEESI VAPAAT URHEILUVUOROT JA TEHDÄ VARAUS HELPOSTI JA NOPEASTI.
+      login_html: Kirjaudu&nbsp;sisään
+      logout: Kirjaudu ulos
+      signup_html: Rekisteröidy
+      sport: tennis
+      venues_list: Keskuksia pääkaupunkiseudulla
+      get_playven: Myynti
+    search_form:
+      duration: 60 minuuttia
+      find_venue: Etsi aikoja
+      sport: tennis
+    search_results:
+      book_venue_messsage: Klikkaa varattavaa aikaa
+      duration: 60 minuuttia
+      find_venue: Etsi aikoja
+      not_available: Löysimme %{count} keskusta hakusi perusteella
+      not_available_with_params_html: Löysimme %{count} keskusta <strong>%{duration} minuuttia</strong> päivänä <strong>%{date}</strong> aikaan <strong>%{time}</strong>
+      sport: tennis
+  prices:
+    price:
+      friday: Perjantai
+      header: Hinta
+      monday: Maanantai
+      saturday: Lauantai
+      sunday: Sunnuntai
+      thursday: Torstai
+      tuesday: Tiistai
+      wednesday: Keskiviikko
+  reservations:
+    cancelled: PERUTTU
+    edit:
+      amount_paid_label: Maksettu tähän mennessä
+      end_time_label: Lopetusaika
+      mark_reservation: Merkkaa varaus maksetuksi?
+      price_label: Hinta
+      get_automatically: Automaattisesti
+      price_placeholder: Ei hintaa
+      select_date_label: Lopetusaika
+      start_time_label: Aloitusaika
+      submit_button: Päivitä varaus
+      note: Muistiinpanot
+      select_game_pass: Tai valitse sarjakortin
+      use_game_pass: Käytä sarjakortin
+      select_game_pass: Valitse sarjakortin
+    form:
+      submit_button: Varaa nyt
+    new:
+      amount_paid_label: Maksettu tähän mennessä
+      court_label: Valitse kenttä
+      end_time_label: Lopetusaika
+      mark_reservation: Merkkaa varaus maksetuksi?
+      owner_label: Varauksen omistaja
+      price_label: Hinta
+      get_automatically: Automaattisesti
+      price_placeholder: Ei hintaa
+      select_date_label: Valitse päivä
+      select_existing: Valitse käyttäjä
+      select_guest: Luo vieraskäyttäjä
+      select_new: Luo uusi käyttäjä
+      select_user_label: Valitse käyttäjä
+      start_time_label: Aloitusaika
+      submit_button: Luo varaus
+      note: Muistiinpanot
+    new_cart:
+      owner_label: Varauksen omistaja
+      select_existing: Valitse käyttäjä
+      select_guest: Luo vieras käyttäjä
+      select_new: Luo uusi käyttäjä
+      select_user_label: Valitse käyttäjä
+      submit_button: Luo varauksia
+      note: Muistiinpanot
+    resell_to_user_form:
+      new_owner_label: "Myy vakiovuoro käyttäjälle:"
+      select_existing: Valitse käyttäjä
+      select_guest: Luo vieraskäyttäjä
+      select_new: Luo uusi käyttäjä
+      select_user_label: Valitse käyttäjä
+      submit_button: Myy
+      success: "Vakiovuoron myynti onnistunut."
+    show:
+      close_link: Sulje
+      customer_name: 'Asiakkaan nimi:'
+      phone_number: Puhelinnumero
+      delete_link: Poista
+      edit_link: Muokkaa
+      log_link: Historia
+      sell_to_user_link: Myy varaus jollekin käyttäjälle
+      resell_link: Vapauta myyntiin
+      withdraw_resell_link:  Peruuta myynti
+      end_time: 'Lopetusaika:'
+      made_by_admin: Ylläpitäjän tekemä
+      made_online: Tehty internetissä
+      resv_date: 'Varauspäivä:'
+      resv_price: 'Varaushinta:'
+      start_time: 'Aloitusaika:'
+      note: Muistiinpanot
+      reselling: Myynnissä
+      resold: Myydyt
+      membership: Vakiovuoro
+    show_log:
+      table_head_time: Tapahtuma-aika
+      table_head_status: Tapahtuma
+      table_head_params: Lisätiedot
+      close_btn: Sulje
+      start_time: Aloitusaika
+      end_time: Lopetusaika
+      court: Kenttä
+      payment_type: Maksutila
+      booking_type: Varaustapa
+      user: Käyttäjä
+      membership: Vakiovuoro Id
+      reselling: Myynnissä
+    update:
+      update_success: Varaus päivitetty onnistuneesti
+      copy_success: Varaus kopioitu onnistuneesti
+    modal:
+      resv_details: 'Varauksen tiedot:'
+    form_info:
+      reselect_button: Valitse uudelleen kalenterissa
+    invoiced: Laskutettu
+    unpaid: Maksamaton
+    online: Maksettu netissä
+    at_venue: Maksettu paikanpäällä
+  shared:
+    booking_modal:
+      around: Kello
+      available_on: Saatavuus
+      book_button: varaa
+      title: Talin Tenniskeskus
+    booking_modal_content:
+      available: kenttää vapaana
+      nantext_line1: Valitse mikä tahansa aikaväli ja siihen sopivat kentät aloittaaksesi varaamisen. Sen jälkeen valitse sinulle sopivin aika ja kenttä.
+      nantext_line2: Kaikki valitut varaukset näkyvät alhaalla, ja voit lisää tai poistaa niitä milloin tahansa
+      nantitle: Aloita varaaminen
+      nofound_nantitle: Hups. :( Valitsemallesi päivälle ei ole vapaita kenttiä. Valitse toinen päivä tai keskus.
+    booking_success_modal:
+      make_another: tee uusi
+      text: Varaus on lisätty profiilisi varauksiin
+      title: Onnistunut varaus
+      view_booking: näytä varaus
+      booking_failed: Varaus epäonnistui
+    credit_card_modal:
+      cancel_button: Peruuta
+      card_cvc: CVC / CWW
+      card_number: Kortin numero
+      submit_button: Tallenna
+      title: Lisää uusi kortti
+    login_modal:
+      forgot_password: Unohditko?
+      signup: Rekisteröidy
+      signup_message: Eikö sinulla ole tiliä?
+      login: Kirjaudu sisään
+      login_fb: Kirjaudu Facebookilla
+      or: tai
+    newnav:
+      help: Tuki
+      login_html: Kirjaudu sisään
+      logout: Kirjaudu ulos
+      signup_html: Rekisteröidy
+      get_playven: Myynti
+    not_logged_modal:
+      login: Kirjaudu sisään
+      modal_text: Sinun pitää olla kirjautunut sisään tehdäksesi varauksen
+      signup: Rekisteröidy
+      title: Hupskeikkaa...
+    payment_modal:
+      payment_text: Sarjakortilta käytettävissä %{charges} pelikertaa.  Paina Maksa, maksaaksesi pelit sarjakortilta.
+      payment_saved: Säästetty summa
+      skip_payment: Maksa paikanpäällä
+      book_text: "Olet tekemässä varausta:"
+      no_payment: Maksa paikanpäällä
+      court_count: "kenttää kokonaissummalla"
+      no_card_msg: Tililläsi ei ole luottokortteja.
+      pay_button: Maksa
+      book_button: Varaa
+      submit_button: Lisää uusi
+      title: Maksu
+    signup_modal:
+      sign_up: Rekisteröidy
+      sign_up_fb: Rekisteröidy FB:llä
+      or: tai
+      terms_accept_html: |
+        Rekisteröitymällä hyväksyt <a href="%{link}">Käyttöehdot</a>
+    time_limitations_selector:
+      time_limitations: Aikarajoitukset
+      add_time_limit: Lisää aikaraja
+      time_from: Mistä
+      time_to: Mihin
+      time_unlimited: Ei rajoituksia
+      weekdays: Viikonpäivät
+      any_weekday: Jokainen viikonpäivä
+    users_table_select:
+      id: Käyttäjätunnus
+      full_name: Koko nimi
+      email: Sähköpostiosoite
+      phone_number: Puhelinnumero
+      address: Osoite
+      actions: Toimenpide
+      search_placeholder: Etsi taulukosta
+      empty: 'Asiakasta ei löytynyt'
+  support:
+    array:
+      last_word_connector: ", ja"
+      two_words_connector: ' ja '
+      words_connector: ", "
+    or: tai
+  time:
+    am: olen
+    formats:
+      default: "%a, %d %b %Y %H:%M:%S %z"
+      long: "%B %d, %Y %H:%M"
+      short: "%d %b %H:%M"
+      easy: '%d/%m/%Y %H:%M'
+    pm: pm
+  users:
+    common:
+      header: Profiilisi
+      location_change_success: Sijainti vaihtaminen onnistui
+    credit_cards:
+      default_option: Korttisi
+      edit_profile: Muokkaa profiilia
+      ending_message: Loppuu %{date}
+      header: Profiilisi
+      invoices: Laskut
+      my_reservations: Varaukseni
+    invoices:
+      download_invoice: Lataa lasku
+      edit_profile: Muokkaa profiilia
+      header: Profiilisi
+      invoice_info: info
+      invoice_name_html: Lasku&nbsp;<b>#%{num}</b>
+      invoices: Laskut
+      membership: Vakiovuoro
+      my_reservations: Omat varaukseni
+      paid: Maksetut laskut
+      pay_now_button: maksa nyt
+      title_date: 'Eräpäivä: %{date}'
+      unpaid: Maksamattomat laskut
+    menu:
+      edit_profile: Muokkaa profiilia
+      invoices: Laskut
+      my_reservations: Omat varaukseni
+    show:
+      add_to_calendar: Lisää kalenteriin
+      cancel_reservation_link: Peruuta varaus
+      resell_reservation_link: Myy varaus
+      withdraw_resell_reservation_link: Peruuta myynti
+      reservation_paid: Maksettu netissä
+      reservation_unpaid: Maksetaan paikanpäällä
+      reservation_reselling: Myynnissä
+      cancelled: Peruttu
+      cant_cancel_reservation_message: Varausta ei voi peruuttaa
+      cant_resell_reservation_message: Varausta ei voi Jälleenmyydä
+      edit_profile: Muokkaa profiilia
+      future_reservations: Tulevat
+      header: Profiilisi
+      invoices: Laskut
+      my_reservations: Varaukset
+      my_recurring_reservations: Vakiovuorot
+      past_reservations: Menneet
+      reselling_reservations: Myynnissä
+      resold_reservations: Myydyt
+    user_no_password:
+      address: Katuosoite
+      city: Kaupunki
+      email: Sähköposti
+      first_name: Etunimi
+      last_name: Sukunimi
+      zipcode: Postinumero
+      phone_number: Puhelin
+  venues:
+    add_reservation:
+      120minutes: 2 tuntia
+      60minutes: 1 tunti
+      90minutes: 1.5 tuntia
+      description: Voit vielä muuttaa päivän ja ajan
+      price_label: Hinta (automaattinen)
+      price_placeholder: Hinta
+      select_court_label: Valitse kenttä
+      select_date_label: Valitse päivä
+      select_duration_label: 'Valitse kesto '
+      select_start_time_label: Alkamisaika
+      select_user_label: Valitse käyttäjä
+      title: Lisää uusi varaus
+    court_new:
+      courts_number_label: Kenttien määrä
+      header: Lisää kenttä
+      submit_button: Luo
+    courts_and_prices:
+      add_courts: Lisää kenttiä
+      add_holidays: Lisää pyhäpäiviä
+      add_prices: Lisää hintoja
+      courts_link: Kentät
+      find_text: Löydä kentät ja hinnat täältä
+      header: Keskuksen tiedot ja asetukset
+      holidays_link: Pyhäpäivä
+      last_modify_html: 'Last modification: <i class="fa fa-clock-o"></i> 2:10 pm - 12.06.2014'
+      price_rules_link: Hinnat
+    edit_emails:
+      header: Hallitse Sähköpostit
+      booking_confirmation_email: Varausvahvistusviesti
+      booking_confirmation_header: Lisäämäsi viesti tulee varausvahvistussähköpostiin.
+      booking_confirmation_placeholder: Varausvahvistusviesti
+      registration_confirmation_email: Uuden asiakkaan vahvistusviesti
+      registration_confirmation_header: Lisäämäsi viesti tulee uuden asiakkaan vahvistussähköpostiin.
+      registration_confirmation_placeholder: Uuden asiakkaan vahvistusviesti
+      email_lists: Sähköpostilistat
+      compose: Kirjoita
+      search_placeholder: Etsi taulukosta
+      close: Close
+      add_all_users: Add all users
+      add_selected_users: Add selected users
+      add_all_users_hint: Add all venue users to the list
+    edit:
+      courts_prices: Kentät & Hinnat
+      delete_button: Poista keskus
+      header: Muokkaa %{name}
+      list_venue: Julkaise keskus
+      change_status_success: Status veranderd succes
+      save_button: Tallenna muutokset
+      custom_colors: Omat värit
+      custom_colors_info: Voit muokata tältä sivulta varauskalenterin värejä.
+      custom_colors_names:
+        paid: Maksetut varaukset
+        unpaid: Maksamattomat varaukset
+        semi_paid: Osittain maksetut varaukset
+        guest: Vierasvaraukset
+        membership: Vakiovuorot
+        reselling: Jälleenmyyntävät vakiovuorot
+        invoiced: Laskutetut varaukset
+        guest_paid: Vierasvaraus Maksettu
+        guest_unpaid: Vierasvaraus Maksamaton
+        guest_semi_paid: Vierasvaraus Osamaksettu
+        other: Muut
+      no_color: Ei omaa väriä asetettu.
+      user_custom_colors: Värit yksittäisille käyttäjille
+      discount_custom_colors: Värit alennuksille
+      add_row: Lisää rivi
+      remove_row: Poista rivi
+    existing_memberships:
+      credit_card_reminder: Lähetä tästä muistutuksen lisätä luottokortin
+      header: Asiakaslista
+      table_head_end_date: Lopetuspäivä
+      table_head_end_time: Lopetusaika
+      table_head_name: Asiakkaan nimi
+      table_head_price: Hinta
+      table_head_weekday: Viikonpäivä
+      table_head_court: Kenttä
+      table_head_time: Aika
+      table_head_edit: Muokkaa
+      table_head_remove: Poista vakiovuoro
+      table_head_title: Otsikko
+      table_head_payment_method: Maksutapa
+      table_head_payment_method_cc: Luottokortti kuukausittain
+      table_head_payment_method_invoice: Laskutus
+      table_head_resv_court: Kenttä
+      table_head_start_date: Aloituspäivä
+      table_head_start_time: Aloitusaika
+      table_head_venue: Keskuksen nimi
+      table_head_weekday: Viikonpäivä
+      table_head_status: Tila
+      search_placeholder: Etsi taulukosta
+      cc_charge_change: Muuta maksu luottokortille
+      failed: Epäonnistui
+      resv_errors: Seuraavia varauksia ei voitu tehdä
+      errors: Varausten päällekkäisyyksiä löydetty!
+      cancel: Peruuta
+      create_non_overlapping: Luo ilman epäonnistuneita
+      ignore_overlaps_tooltip: Tekee vakiovuoron ilman päällekkäisiä varauksia, peru vuorot käsin tehdäksesi niiden päälle vakiovuoron varauksia
+      table_head_reservations: Varaukset
+      resell_reservation_link: Vapauta myyntiin
+      withdraw_resell_reservation_link: Peruuta jälleenmyynti
+      resold_reservation: Myyty varaus
+      reservation_log_link: Historia
+    form:
+      closing_time: Sulkemisaika
+      opening_hours: Aukeamisaika
+      booking_ahead_limit: Kuinka monta päivää etukäteen kentän voi varata
+      cancellation_time: Kuinka monta tuntia etukäteen varauksen voi perua
+      sunday: Sunnuntai
+      monday: Maanantai
+      tuesday: Tiistai
+      wednesday: Keskiviikko
+      thursday: Torstai
+      friday: Perjantai
+      saturday: Lauantai
+    holidays_new:
+      create_error: Lomaa ei voitu luoda
+      create_success: Loma luotu
+      create_conflict: Loma ristiriidassa olemassaolevien varausten kanssa
+      cancel_conflicting: Luo loma ja peruuta päällekkäiset varaukset
+      keep_conflicting: Peruuta loman luominen ja pidä varaukset
+      select_all_courts: Valitse kaikki kentät
+      end_date: Lopetuspäivämäärä
+      end_time: Lopetusaika
+      header: Lisää pyhäpäivä
+      leave_empty: Jätä tyhjäksi kaikille pyhäpäiville
+      off_time: Suljettu
+      select_court: Valitse kenttä
+      start_date: Aloituspäivämäärä
+      start_time: Aloitusaika
+      submit_button: Lisää
+      whole_venue_checkbox: Pyhäpäivä koko keskukselle
+    manage_court:
+      close_button: Sulje
+      duration_policy: Pienin Kesto Policy
+      edit_link: Muokkaa %{name}
+      from: mistä mihin
+      header: Kentän kuvaus
+      price: Hinta
+      price_rules_friday: Perjantain hinnat
+      price_rules_monday: Maanantain hinnat
+      price_rules_saturday: Lauantain hinnat
+      price_rules_sunday: Sunnuntain hinnat
+      price_rules_thursday: Torstain hinnat
+      price_rules_tuesday: Tiistain hinnat
+      price_rules_wednesday: Keskiviikon hinnat
+      start_time_policy: Kentän jaksotus
+      to: asti
+      delete_button: Poista
+    manage_discounts:
+      create_modal:
+        create_discount_success: Alennus luotu
+        update_discount_success: Alennus päivitetty onnistuneesti
+        create_discount_fail: Luominen epäonnistui alennus
+        update_discount_fail: Päivitys epäonnistui alennus
+        submit: Esittää
+        discount: Alennus
+        type_placeholder: Valitse alennustyyppi
+        name: Nimi
+        value: Arvo
+        type: Tyyppi
+        start_date: Aloituspäivämäärä
+        end_date: Päättymispäivä
+        sports: Urheilu
+        court_type: Court Tyyppi
+        surfaces: Pinnat
+      add_disounts_link: Lisää alennus
+      customers: Asiakkaat
+      discounts: Alennukset
+      header: Alennukset
+      search_placeholder: Etsi taulukosta
+      text: Hallitse asiakasalennuksia
+    discounts_customers_table:
+      table_head_action: Toiminto
+      table_head_email: Asiakkaan sähköposti
+      table_head_id: Asiakastunnus
+      table_head_name: Asiakkaan nimi
+      table_head_type: Alennustyyppi
+    manage_price:
+      close_button: Sulje
+      update_button: Päivittää
+      cancel_button: Peruuttaa
+      edit_button: Muokata
+      days_affect: 'Päivät, joita hinta koskee:'
+      delete_button: Poista
+      from: Alkaen
+      header: Hintasääntö
+      notice: Tämä hinta vaikuttaa montaa kenttää yhtenä tai useampana viikonpäivänä
+      price: Hinta
+      price_rule: Kentät, joihin hintasääntö vaikuttaa
+      to: asti
+    memberships:
+      edit_membership: Edit jäsenyys
+      update_button: Päivittää
+      cancel_button: Peruuttaa
+      close_button: Sulje
+      create_membership: Luo uusi Vakiovuoro
+      details_p_html: |-
+        <strong>Lorem Ipsum is simply dummy</strong> text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown
+        printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting,
+        remaining essentially unchanged.
+      details_text: Näytä ja muokkaa Vakiovuorotietoja
+      details_title: Vakiovuorotiedot
+      header: Vakiovuorot
+      membership: "%{name} Vakiovuorot"
+      save_button: Tallenna muutokset
+      import_memberships: Tuo Vakiovuorot
+    memberships_new:
+      create_new_user: Luo uusi käyttäjä
+      header: Lisää Vakiovuoro
+      membership_end_date: Vakiovuoro päättyy
+      membership_owner: Vakiovuoron omistaja
+      membership_start_date: Vakiovuoro alkoi
+      price_label: Hinta
+      title_label: Otsikko (valinnainen)
+      select_court_label: Valitse kenttä
+      select_end_time: Valitse päättymisaika
+      select_existing_user: Valitse käyttäjä
+      select_start_time: Valitse alkamisaika
+      select_user_label: Valitse käyttäjä
+      select_weekday_label: Valitse päivä
+      membership_note: Vakiovuoron Muistiinpanot
+      note: Muistiinpanot
+      submit_button: Luo
+      select_user_message: Valitse käyttäjä
+    memberships_import:
+      download_csv_template: Lataa CSV-esimerkkitiedosto
+      upload_button: Tuo
+      csv_file: CSV tiedosto
+      ignore_conflicts: Ohita varaukset konfliktit
+      importing: Tuominen...
+    new:
+      create_button: Luo keskus
+      header: Lisää keskus
+      title: Uusi keskus
+    price_new:
+      all_days: Kaikki päivät
+      choose_dates: Valitse päivät hinnalle
+      create_button: Luo
+      end_time_label: Päättymisaika
+      header: Lisää hintasääntö
+      price: Hinta
+      select_all_courts: Valitse kaikki kentät
+      select_court_label: Valitse kentt(i)ä
+      start_time_label: Alkamisaika
+      weekdays: Viikonpäivät
+      weekend: Viikonloppu
+    prices_modal:
+      cancel_link: Peruuta tai muokkaa hintasääntöä
+      conflicts: 'Ristiriidat:'
+      create_rule_link: Lisää hintasääntö, mutta poista kenttä 4 hintasäännöstä jotta ristiriidat vältetään
+      for_courts: kentille
+      from: alkaen
+      from_on: alkaen %{start_time} - ${end_time}
+      merge_link: MERGE EM !!!
+      modal_content: Hintasääntö, jonka yritit lisätä yrittää kirjoittaa vanhojen sääntöjen päälle. Tämä konflikti on ratkaistava!
+      modal_title: Hintasääntökonflikti!
+      option3: 'Vaihtoehto 3:'
+      option3_text: Luo uusi sääntö ja kirjoita vanhojen päälle
+      price_rule: Hintasääntö %{id}
+      price_rules_changed: Nämä hintasäännöt muutetaan ja vaihdetaan $ %{price}
+      price_text: Yritit lisätä hintasäännön kentille
+      rule_text: Tämä sääntö on konfliktissa säännön %{price_id} kanssa
+      solve_options: 'Vaihtoehdot:'
+      to: asti
+      'true': true
+    show:
+      60minutes: 60 min
+      90minutes: 90 min
+      120minutes: 120 min
+      about_venue: Tietoa keskuksesta
+      check_times: Etsi aikoja
+      close_button: Sulje
+      find_button: Löydä kenttä
+      icon_title: 'Lajit: tästä näet kaikki keskuksen lajit'
+      info: Tietoa
+      map: Kartta
+      opening_hours: Aukioloajat
+      sports: Lajit
+      tennis: Tennis
+    view:
+      header: Varausnäkymä
+      option1: Config option 1
+      option2: Config option 2
+      resv: Varaukset
+      resv_details: 'Varauksen historia:'
+      book_all: Varaa vuorot
+      use_cart: Korivaraus
+      clear: Tyhjennä
+      reserve_all: Varaa vuorot
+      change_duration_confirm_title: Varauksen pituuden muuttaminen?
+      change_duration_confirm_text: |
+        Haluatko muuttaa varauksen
+        kestoa %{duration} minuutista %{new_duration} minuuttiin ja
+        aikaa %{start_time} ->  %{end_time}?
+      change_duration_button_text: Muuta
+      change_duration_cancel_button_text: Valitse uudelleen
+      calendar_prev_week_button: Edellinen viikko
+      calendar_next_week_button: Etene yhdellä viikolla
+      calendar_prev_day_button: Edellinen päivä
+      calendar_next_day_button: Etene yhdellä päivällä
+      calendar_reservation_reselect: 'VARAUKSEN MUOKKAAMINEN KÄYNNISSÄ. Valitse haluamasi päivä ja piirrä varaus uudelleen haluamallesi kentälle ja ajalle.'
+      copy_reservation_confirm_title: Siirrä vai Kopioi?
+      copy_reservation_confirm_text: Kopioiminen luo kopiovarauksen samalla kestolla
+      copy_reservation_button_text: Kopio
+      move_reservation_button_text: Siirrä
+    reports:
+      sales_report: Myyntiraportti
+      header: Raportit
+      from: Mistä
+      to: Mihin
+      download_btn: Lataa raportti
+    cancelled_reservations:
+      header: Peruutettu varaukset
+      table_head_id: Verotunnus
+      table_head_user: Käyttäjä
+      table_head_cancellation_time: Peruutettu at
+      table_head_reservation_time: Varausajankohta
+      table_head_reservation_court: Kentän nimi
+      reservation_log_link: Historia
+      search_placeholder: Etsi
+  email_lists:
+    index:
+      name_placeholder: Uusi sähköpostilista
+    email_list:
+      name: Nimi
+      email: Sähköposti
+      actions: Valitse kaikki
+      search_placeholder: Etsi taulukosta
+    update:
+      success: Sähköpostilista uudelleen nimetty
+    remove_users:
+      success: Käyttäjät poistettu sähköpostilistalta
+    add_users:
+      success: Käyttäjät lisätty onnistuneesti
+    destroy:
+      success: Sähköpostilista poistettu
+    custom_mail:
+      success: Sähköposti lisätty lähetettäväksi.
+      no_recipient: Valitse vastaanottajia
+    send_mail:
+      from: Lähettäjä
+      other_email: Syötä sähköposti
+      subject: Otsikko
+      add_groups: Lisää sähköpostilistoja
+      add_users: Lisää käyttäjiä
+      user_emails_placeholder: Sähköpostit erotellaan pilkulla
+      email_body: Sähköpostin viesti
+      image_tooltip: "Lisää oma kuva sähköpostiin. Oletuksena keskuksen pääkuva"
+      image_label: Kuva (valinnainen)
+      send_copy: Lähetä minulle kopio.
+      send_button: Lähetä
+  custom_mails:
+    email_history:
+      search_placeholder: Etsi taulukosta
+      from: Lähettäjä
+      created_at: Luomisaika
+      to: Vastaanottaja
+      subject: Otsikko
+      recipients:
+        one: "1 vastaanottaja"
+        other: "%{count} vastaanottajaa"
+      expand_collapse: Laajenna/Piilota näkymä
+
+  validator:
+    errors:
+      date: 'Anna kelvollinen päivämäärä muodossa DD/MM/YYYY'
+      time: 'Anna kelvollinen aika muodossa HH:mm'
+
+  services:
+    csv_import_base:
+      report: 'Luotu: %{created}, Yhdistetty jäseniksi: %{skipped}, epäonnistui: %{failed}'
+      no_file: Valitse CSV-tiedosto
+      invalid_file: Virheellinen tiedosto
+      failed_to_process: 'Tuominen epäonnistui. Virhe: %{error}'
+      invalid_header: "Virheellinen muotoilu tiedostolla. Puuttuvat sarakkeet: %{missing}"
+      required: '*vaaditaan'
+      non_required: 'voi olla tyhjä'
+    csv_import_users:
+      no_venue: Ei keskusta valittu
+      failed_to_process_data: 'Epäonnistui käsitellä tietoja: %{data}'
+    csv_import_memberships:
+      report: 'Luotu: %{created}, ohitetaan: %{skipped}, epäonnistui: %{failed}'
+      no_email: NO_EMAIL
+      no_venue: Ei keskusta valittu
+      corrupted_data: VIOITTUNEET TIEDOT
+      failed_to_process_data: 'Epäonnistui käsitellä tietoja.'
+      column_comments:
+        email: Käytetään käyttäjätunnus
+        local_timezone: paikallisen aikavyöhykkeen
+        court_index: 'Indeksi kentän tyyppi(1,2,3...)'
+        court_sport: "Käytä jotain: %{defaults}"
+        court_outdoor: "Ulkokenttä. Oletukset 'Sisäkenttä' if tyhjinäkin"
+
+  will_paginate:
+    previous_label: '<'
+    next_label: '>'
+    page_gap: '...'
+  thanks: Kiitos!
+  admin: hallinto

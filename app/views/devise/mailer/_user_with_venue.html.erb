@@ -1,0 +1,44 @@
+<table class="pa20" width="100%" align="center" border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td height="40"></td>
+  </tr>
+  <tr>
+    <td>
+      <h1 class="aligncenter"><%= t('.user_created', venue: @venue.venue_name) %>!</h1>
+    </td>
+  </tr>
+  <tr>
+    <td height="40"></td>
+  </tr>
+  <tr>
+    <td>
+      <p class="aligncenter"><%= t('devise.mailer.confirmation_instructions.playven_user_account_text_html',
+        link: link_to('playven.com', user_frontend_host)) %></p>
+
+      <p class="aligncenter"><%= t('.complete_confirmation_by_email') %></p>
+
+      <%= simple_format(@venue.registration_confirmation_message) %>
+    </td>
+  </tr>
+  <tr>
+    <td height="15"></td>
+  </tr>
+  <tr>
+    <td>
+      <p class="aligncenter m0"><%= t('devise.mailer.confirmation_instructions.regards') %>,</p>
+      <p class="aligncenter m0"><%= t('devise.mailer.confirmation_instructions.playven') %>  &amp; <%= @venue.venue_name %></p>
+    </td>
+  </tr>
+  <tr>
+    <td height="30"></td>
+  </tr>
+  <tr>
+    <td>
+      <p class="aligncenter">
+        <%= link_to t('devise.mailer.confirmation_instructions.confirmation_link'),
+                      get_confirmation_url(@resource, @token),
+                      { :class => "btn-primary" } %>
+      </p>
+    </td>
+  </tr>
+</table>

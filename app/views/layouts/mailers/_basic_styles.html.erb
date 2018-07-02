@@ -1,0 +1,407 @@
+<style>
+  /* -------------------------------------
+  GLOBAL
+  A very basic CSS reset
+  ------------------------------------- */
+  * {
+    margin: 0;
+    padding: 0;
+    font-family: "Helvetica", Helvetica, Arial, sans-serif;
+    box-sizing: border-box;
+    font-size: 14px; /* 16px set for custom mailer */
+  }
+
+  img {
+    max-width: 100%;
+  }
+
+  body {
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-size-adjust: none;
+    width: 100% !important;
+    height: 100%;
+    line-height: 1.6;
+    background-color: #08B8FE;
+  }
+
+  /* Let's make sure all tables have defaults */
+  table td {
+    vertical-align: top;
+  }
+
+  #bodyTable {
+    margin: auto;
+  }
+
+  #emailBody {
+
+  }
+
+  #emailFooter {
+    padding: 20px;
+  }
+
+  #emailFooter p {
+    margin: 0;
+  }
+
+  #emailContainer {
+    background-color: #fff;
+    border-radius: 4px;
+    width: 600px;
+  }
+
+  .logo-wrapper {
+    padding-top: 15px;
+    padding-left: 10px;
+  }
+
+  /* -------------------------------------
+  TYPOGRAPHY
+  ------------------------------------- */
+
+  h1, h2, h3 {
+    font-family: Helvetica, Arial, sans-serif;
+    color: #000;
+    margin: 0;
+    padding: 0;
+    line-height: 1.2;
+    font-weight: 400;
+    letter-spacing: 1px;
+  }
+
+  h1 {
+    font-size: 24px;
+    font-weight: 500;
+  }
+
+  h2 {
+    font-size: 24px;
+  }
+
+  h3 {
+    font-size: 18px;
+  }
+
+  h4 {
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  p {
+    font-family: Helvetica, Arial, sans-serif;
+    color: #556672;
+    font-size: 13px;
+    line-height: 1.85;
+    font-weight: lighter;
+    letter-spacing: 1px;
+    margin-top: 0;
+    margin-left: 0;
+    margin-right: 0;
+    margin-bottom: 10px;
+    padding: 0;
+  }
+
+  ul, ol {
+    margin-bottom: 10px;
+    font-weight: normal;
+  }
+  p li, ul li, ol li {
+    margin-left: 5px;
+    list-style-position: inside;
+  }
+
+  .smallText {
+    font-size: 11px;
+    letter-spacing: 0;
+  }
+
+  .bold {
+    font-weight: bold;
+  }
+
+  .addressText {
+    font-size: 10px;
+    letter-spacing: 0;
+    color: #fff;
+    text-align: center;
+    margin: 0;
+  }
+
+  .titleAddressText {
+    font-size: 13px;
+    letter-spacing: 0;
+    text-align: center;
+    margin: 0;
+  }
+
+  /* -------------------------------------
+  LINKS & BUTTONS
+  ------------------------------------- */
+  a {
+    text-decoration: underline;
+    color: #157DFE;
+    font-size: inherit;
+    font-weight: lighter;
+    letter-spacing: inherit;
+  }
+
+  .btn-primary {
+    background-color: #53D970;
+    color: #fff;
+    border-radius: 50px;
+    text-transform: uppercase;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 11px;
+    padding: 10px 20px;
+    letter-spacing: 1px;
+    display: inline-block;
+    cursor: pointer;
+  }
+
+  .btn-secondary {
+    background-color: #157DFE;
+    color: #fff;
+    border-radius: 50px;
+    text-transform: uppercase;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 11px;
+    padding: 10px 20px;
+    letter-spacing: 1px;
+    display: inline-block;
+    cursor: pointer;
+  }
+
+  /* -------------------------------------
+  OTHER STYLES THAT MIGHT BE USEFUL
+  ------------------------------------- */
+
+  hr {
+    width: 100%;
+    background-color: #ECEEF1;
+    height: 1px;
+    border: 0;
+  }
+
+  .blueText {
+    color: #157DFE;
+  }
+
+  .m0 {
+    margin: 0;
+  }
+
+  .mt10 {
+    margin: 10px 0 0 0;
+  }
+
+  .pa20 {
+    padding: 20px;
+  }
+
+  .pa25 {
+    padding: 25px;
+  }
+
+  .last {
+    margin-bottom: 0;
+  }
+
+  .first {
+    margin-top: 0;
+  }
+
+  .aligncenter {
+    text-align: center;
+  }
+
+  .alignright {
+    text-align: right;
+  }
+
+  .alignleft {
+    text-align: left;
+  }
+
+  .clear {
+    clear: both;
+  }
+
+  /* -------------------------------------
+  ALERTS
+  Change the class depending on warning email, good email or bad email
+  ------------------------------------- */
+  .alert {
+    font-size: 16px;
+    color: #fff;
+    font-weight: 500;
+    padding: 20px;
+    text-align: center;
+    border-radius: 3px 3px 0 0;
+  }
+  .alert a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 16px;
+  }
+  .alert.alert-warning {
+    background-color: #FF9F00;
+  }
+  .alert.alert-bad {
+    background-color: #D0021B;
+  }
+  .alert.alert-good {
+    background-color: #68B90F;
+  }
+
+  /* -------------------------------------
+  INVOICE
+  Styles for the billing table
+  ------------------------------------- */
+
+  .invoice {
+    width: 100%;
+  }
+
+  .invoice__details p {
+    line-height: 1.4;
+    margin: 0;
+    padding-left: 50px;
+    font-size: 12px;
+    color: #24292C;
+  }
+
+  .invoice__details .invoice__details-title {
+    color: #157DFE;
+  }
+
+  .invoice-items {
+    width: 100%;
+  }
+
+  .invoice-items__item {
+    background-color: #F3F8FF;
+  }
+
+  .invoice-items__item td {
+    padding: 20px;
+  }
+
+  .invoice-items__name {
+    color: #263238;
+    font-size: 16px;
+    margin: 0;
+    line-height: 1.4;
+  }
+
+  .invoice-items__time {
+    color: #556672;
+    font-size: 12px;
+    margin: 0;
+    line-height: 1.4;
+  }
+
+  .invoice-items__price {
+    font-size: 18px;
+    margin: 0;
+  }
+
+  .invoice-items__fee {
+    color: #556672;
+    font-size: 12px;
+    line-height: 2;
+  }
+
+  .total-status__title {
+    color: #556672;
+    font-size: 12px;
+  }
+
+  .total-status__value {
+    color: #263238;
+    font-size: 12px;
+  }
+
+  .total__title,
+  .total__value,
+  .total__including {
+    vertical-align: middle;
+  }
+
+  .total__title {
+    color: #263238;
+    font-size: 12px;
+    padding-right: 10px;
+  }
+
+  .total__value {
+    color: #157DFE;
+    font-size: 18px;
+    font-weight: bold;
+  }
+
+  .total__including {
+    font-size: 12px;
+    color: #157DFE;
+  }
+
+  .invoice__confirmation_message {
+    background-color: #EAF0F8;
+    color: #556672;
+    font-size: 11px;
+    font-style: italic;
+    padding: 10px 20px;
+  }
+
+  .invoice__confirmation_message p {
+    text-align: center;
+    margin: 0;
+  }
+
+
+  /* -------------------------------------
+  RESPONSIVE AND MOBILE FRIENDLY STYLES
+  ------------------------------------- */
+  @media only screen and (max-width: 640px) {
+    body {
+      padding: 0 !important;
+    }
+
+    h1, h2, h3, h4 {
+      font-weight: 600 !important;
+      margin: 20px 0 5px !important;
+    }
+
+    h1 {
+      font-size: 22px !important;
+    }
+
+    h2 {
+      font-size: 18px !important;
+    }
+
+    h3 {
+      font-size: 16px !important;
+    }
+
+    .container {
+      padding: 0 !important;
+      width: 100% !important;
+    }
+
+    .content {
+      padding: 0 !important;
+    }
+
+    .content-wrap {
+      padding: 10px !important;
+    }
+
+    .invoice {
+      width: 100% !important;
+    }
+  }
+</style>

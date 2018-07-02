@@ -1,0 +1,40 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://api.geonames.org/timezoneJSON?lat=60.175405&lng=24.914562&username=victor_ivanov
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 14 Mar 2017 02:39:40 GMT
+      Server:
+      - Apache
+      Cache-Control:
+      - no-cache
+      Access-Control-Allow-Origin:
+      - "*"
+      Transfer-Encoding:
+      - chunked
+      Content-Type:
+      - application/json;charset=UTF-8
+    body:
+      encoding: UTF-8
+      string: '{"sunrise":"2017-03-14 06:41","lng":24.914562,"countryCode":"FI","gmtOffset":2,"rawOffset":2,"sunset":"2017-03-14
+        18:19","timezoneId":"Europe/Helsinki","dstOffset":3,"countryName":"Finland","time":"2017-03-14
+        04:39","lat":60.175405}'
+    http_version: 
+  recorded_at: Tue, 14 Mar 2017 02:39:40 GMT
+recorded_with: VCR 3.0.1

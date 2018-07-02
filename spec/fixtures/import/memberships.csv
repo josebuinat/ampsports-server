@@ -1,0 +1,5 @@
+email,start_date,end_date,start_time,end_time,weekday,price,court_index,court_sport,court_outdoor
+example@mail.com,11/01/2017,11/02/2017,10:00,11:00,Tuesday,10.0,1,tennis,outdoor
+example@mail.com,'11/01/2017','failing row','invalid time',11:00,Tueday,10.0,1,,outdoor
+
+#*required. Used as user ID,#*required. DD/MM/YYYY,#*required. DD/MM/YYYY,#*required. HH:MM in local timezone,#*required. HH:MM in local timezone,#*required,#*required,"#*required. Index for court type(1,2,3...)","#*required. One of: tennis, squash, badminton, golf, volleyball, soccer, floorball, tabletennis, spinning, billiard, snooker, gym",#can be empty. Defaults to 'indoor' if empty

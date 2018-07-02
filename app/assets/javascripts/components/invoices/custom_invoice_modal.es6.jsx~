@@ -1,0 +1,63 @@
+var _ciModal;
+
+class CustomInvoiceModal extends React.Component {
+  constructor(props) {
+    super(props);
+    _cicModal = this;
+    this.state = {
+      show: true
+    }
+  }
+
+  close() {
+    this.setState({ show: false });
+  }
+
+  open() {
+    this.setState({ show: true });
+  }
+
+  submit() {
+  }
+
+  render() {
+    return(
+      <Modal show={this.state.show}
+             onHide={this.close.bind(this)}
+             aria-labelledby="contained-modal-title-lg">
+        {this.header()}
+        {this.content()}
+        {this.footer()}
+      </Modal>
+    )
+  }
+
+  header() {
+    return(
+      <Modal.Header closeButton>
+        <h1>{I18n.t('invoices.custom_invoice_modal.header')}</h1>
+      </Modal.Header>
+    );
+  }
+
+  content() {
+    return(
+      <Modal.Body>
+        <form className='custom-invoice-form'>
+          <CustomInvoiceComponentsContainer/>
+        </form>
+      </Modal.Body>
+
+    );
+  }
+
+  footer() {
+    return(
+      <Modal.Footer>
+        <button className="btn btn-primary" onClick={this.submit.bind(this)}>
+          {I18n.t('invoices.custom_invoice_modal.submit_button')}
+        </button>
+      </Modal.Footer>
+    );
+  }
+}

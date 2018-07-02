@@ -1,0 +1,65 @@
+<%= render 'layouts/mailers/basic_styles' %>
+
+<body>
+  <table
+    id="bodyTable"
+    width="100%"
+    align="center"
+    border="0"
+    cellpadding="0"
+    cellspacing="0">
+    <tr>
+      <td height="30"></td>
+    </tr>
+    <tr>
+      <td align="center" valign="top">
+        <table
+          id="emailContainer"
+          border="0"
+          cellpadding="0"
+          cellspacing="0">
+          <tr>
+            <td align="center" valign="top">
+              <table border="0" cellpadding="0" cellspacing="0" width="100%" id="emailBody">
+                <tr>
+                  <td align="center" valign="top">
+                    <% if @venue %>
+                      <%= render 'user_with_venue' %>
+                    <% else %>
+                      <%= render 'user_without_venue' %>
+                    <% end %>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          <tr>
+            <td align="center" valign="top">
+              <table border="0" cellpadding="0" cellspacing="0" width="100%" id="emailFooter">
+                <tr>
+                  <td height="50"></td>
+                </tr>
+                <tr>
+                  <td align="center" valign="top">
+                    <%= render 'layouts/mailers/footer' %>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+    <tr>
+      <td height="30"></td>
+    </tr>
+    <tr>
+      <td>
+        <%= render 'layouts/mailers/footer_address' %>
+      </td>
+    </tr>
+    <tr>
+      <td height="30"></td>
+    </tr>
+  </table>
+</body>

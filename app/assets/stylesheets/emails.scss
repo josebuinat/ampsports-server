@@ -1,0 +1,28 @@
+.email-history-container {
+  border-bottom: 1px solid #e7eaec;
+}
+
+.scroll-height {
+  max-height: 60em;
+  overflow-y: auto;
+}
+
+.recipientListContainer {
+  max-height: 4em;
+  overflow-y: auto;
+}
+
+.recipientListContainer.expanded {
+  max-height: 15em;
+  overflow-y: auto;
+}
+
+ul.mail-list{
+  li {
+    cursor: pointer;
+  }
+
+  li.selected, li:hover {
+    background-color: #f3f3f4;
+  }
+}

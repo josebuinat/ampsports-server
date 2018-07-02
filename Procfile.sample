@@ -1,0 +1,3 @@
+redis: redis-server
+rails: bin/rails s --port 3030
+worker: bundle exec sidekiq

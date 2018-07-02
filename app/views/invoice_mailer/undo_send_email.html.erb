@@ -1,0 +1,38 @@
+<table width="100%" class="pa20">
+  <tr>
+    <td height="40"></td>
+  </tr>
+  <tr>
+    <td>
+      <h1 class="aligncenter bold">Hello,</h1>
+    </td>
+  </tr>
+  <tr>
+    <td height="5"></td>
+  </tr>
+  <tr>
+    <td>
+      <h1 class="aligncenter bold blueText"><%= @user.full_name %>!</h1>
+    </td>
+  </tr>
+</table>
+
+<table width="80%">
+  <tr>
+    <td>
+      <p class="aligncenter">
+        <%= t('.undo_send_email',
+          full_name: @user.full_name,
+          invoice_id: @invoice.id,
+          company_name: @company_legal_name,
+          email: @admin.email,
+          phone_number: @company.company_phone) %>
+      </p>
+    </td>
+  </tr>
+  <tr>
+    <td height="15"></td>
+  </tr>
+</table>
+
+<%= render 'layouts/mailers/best_playven' %>

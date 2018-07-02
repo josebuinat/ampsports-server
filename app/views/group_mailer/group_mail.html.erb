@@ -1,0 +1,34 @@
+<table class="pa20" width="100%" cellpadding="0" cellspacing="0">
+  <tr>
+    <td>
+      <table width="100%">
+        <tr>
+          <td align="left" class="logo-wrapper">
+            <img width="100" height="24" src="<%= image_url('amperlogo_blue@x2.png', host: api_host) %>" alt="Logo">
+          </td>
+          <td align="right">
+            <p class="alignright smallText m0">
+              <%= t("group_mailer.#{@method_name}.notification", on: DateTime.current.strftime("%D"))%>
+            </p>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr>
+    <td height="40"></td>
+  </tr>
+  <tr>
+    <td>
+      <%= render 'layouts/mailers/venue_title' %>
+    </td>
+  </tr>
+  <tr>
+    <td height="40"></td>
+  </tr>
+  <tr>
+    <td>
+      <%= t("group_mailer.#{@method_name}.description", group_name: @group.name) %>
+    </td>
+  </tr>
+</table>

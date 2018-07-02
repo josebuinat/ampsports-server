@@ -1,0 +1,31 @@
+<div class="full-height-scroll">
+  <div class="table-responsive">
+    <table
+      class="table table-striped table-hover footable"
+      data-paging=true
+      data-paging-size="8"
+      data-sorting=true
+    >
+      <thead>
+        <th>
+          <%= t('.table_head_name')%>
+        </th>
+        <th data-type="number">
+          <%= "#{t('.table_head_value')} (#{@current_company.currency_unit})" %>
+        </th>
+        <th>
+          <%= t('.table_head_method')%>
+        </th>
+      </thead>
+      <tbody id='discounts'>
+        <% venue.discounts.each do |discount| %>
+          <%= render partial: 'discounts/show', locals: { venue: venue, discount: discount } %>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<script type="text/javascript">
+  $(".footable").footable();
+</script>

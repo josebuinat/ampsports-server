@@ -1,0 +1,88 @@
+\documentclass[a4paper,8pt]{extreport}
+
+% Definitions
+\usepackage{lscape}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc} % Fixes scandinavian character problem
+\usepackage[left=0.5cm,top=1cm,right=0.5cm,bottom=1cm,nohead,nofoot]{geometry}
+\usepackage{latex/booktable}
+
+<% landscape = true %>
+
+\begin{document}
+\thispagestyle{empty}
+<% if landscape %>
+  \begin{landscape}
+  <% courts_by_page = 11 %>
+<% else %>
+  <% courts_by_page = 8 %>
+<% end %>
+\noindent\printheading{<%=@venue.venue_name%> <%= @calendar_date %>}
+
+% Define the layout of your time tables
+\setslotsize{1.1cm}{2.25cm}{0.49cm}
+\settopheight{1}
+\settextframe{1.0mm}
+
+% Define event types
+%            type|R|G|B|t_R|t_G|t_B
+\defineevent{User}{0.98}{0.15}{0.44}{1.0}{1.0}{1.0}
+\defineevent{Group}{0.4}{0.85}{0.94}{1.0}{1.0}{1.0}
+\defineevent{Coach}{0.65}{0.89}{0.18}{1.0}{1.0}{1.0}
+\defineevent{Guest}{0.77}{0.55}{1.0}{1.0}{1.0}{1.0}
+\defineevent{closed}{1.0}{1.0}{1.0}{0.6}{0.6}{0.6}
+\defineevent{type1}{1.0}{1.0}{1.0}{0.32}{0.32}{0.32}
+\defineevent{type2}{1.0}{1.0}{1.0}{0.6}{0.6}{0.6}
+
+  % Start the time table
+  <% page_number = 0 %>
+
+  <% @courts.each_slice(courts_by_page) do |court_enum| %>
+
+    <% item_number = 1 %>
+
+    <% opening = [@venue.opening(@day)[0,2].to_i,6].max %>
+    <% closing = @venue.closing(@day)[0,2].to_i %>
+
+    \setslotcount{<%= court_enum.count %>}{<%= 2*(closing - opening)+1 %>}
+    \begin{booktable}
+    \bookhours{<%= opening %>}{30}
+
+    <% court_enum.each do |court| %>
+      \courtmark{<%= court.court_name %>}
+
+      <% start_time = Time.zone.parse(@calendar_date).beginning_of_day %>
+      <% end_time = Time.zone.parse(@calendar_date).end_of_day %>
+
+      <% court.reservations_during(start_time, end_time).each do |res| %>
+        <% title = res.for_group? ? res.group.name : res.reservation_title %>
+        <% title = strip_tags(title).gsub(/[[:punct:]]/,'') %>
+        <% type = res.user_type %>
+        <% item_start_time = res.start_time.in_time_zone(@venue.timezone).strftime("%H%M") %>
+        <% item_end_time = res.end_time.in_time_zone(@venue.timezone).strftime("%H%M") %>
+
+        <% title = "\\small{#{title}}" if (item_end_time.to_i - item_start_time.to_i) <= 70 %>
+        <% title = "\\textbf{#{title}}" %>
+        <% title << '\\\\'+res.coaches.map(&:first_name).join(',') unless res.coaches.empty? %>
+        <% title << '\\\\'+res.classification.name if res.classification %>
+
+        \event {<%= item_number %>}{<%= item_start_time %>}{<%= item_end_time %>}{<%= title %>}{}{type1}
+      <% end %>
+      <% item_number += 1 %>
+
+    <% end %>
+
+    \end{booktable}
+
+    <% page_number += 1 %>
+    <% if page_number >= 1  %>
+      \newpage
+    <% end %>
+
+  <% end %>
+
+<% if landscape %>
+\end{landscape}
+<% end %>
+
+\end{document}

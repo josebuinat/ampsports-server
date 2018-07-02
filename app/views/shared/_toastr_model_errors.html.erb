@@ -1,0 +1,7 @@
+<% if model.errors.present? %>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      toastr.error('<%= model.errors.full_messages.join(', ').gsub("'", "\'") %>')
+    });
+  </script>
+<% end %>

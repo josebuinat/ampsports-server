@@ -1,0 +1,223 @@
+% Standard Finnish Invoice Template v0.4
+% Copyright 2008 Jaakko Heusala <jheusala@iki.fi>
+%
+% See README in finnish for instructions.
+%
+% $Id: invoice.tex 4581 2008-02-24 18:59:30Z jheusala $
+% [The zlib/libpng License]
+%
+% This software is provided 'as-is', without any express or implied
+% warranty. In no event will the authors be held liable for any damages
+% arising from the use of this software.
+%
+% Permission is granted to anyone to use this software for any purpose,
+% including commercial applications, and to alter it and redistribute it
+% freely, subject to the following restrictions:
+%
+%    1. The origin of this software must not be misrepresented; you must not
+%    claim that you wrote the original software. If you use this software
+%    in a product, an acknowledgment in the product documentation would be
+%    appreciated but is not required.
+%
+%    2. Altered source versions must be plainly marked as such, and must not be
+%    misrepresented as being the original software.
+%
+%    3. This notice may not be removed or altered from any source
+%    distribution.
+%
+
+<% customer = invoice.owner %>
+<% biller = invoice.biller %>
+
+%% Document Header %%%%%
+\fontsize{12pt}{14pt}
+\selectfont
+\hspace*{1.5cm}
+\begin{tabular}[t]{@{}p{8.5cm}@{}p{8.5cm}@{}r}
+  \parbox[t]{7.5cm}{
+    \fontsize{16pt}{18pt}
+    \selectfont
+    \begin{hyphenrules}{nohyphenation}
+      \textsc{<%= safe_text biller.company_legal_name %>} \\
+    \end{hyphenrules}
+    \fontsize{12pt}{14pt}
+    \selectfont
+    \\
+    \\
+    \\
+    \\
+    <%= safe_text customer.full_name %> \\
+    <%= safe_text customer.street_address %> \\
+    <%= safe_text "#{customer.zipcode} #{customer.city}" %>\\
+  }
+  &
+  \parbox[t]{8.5cm}{
+    LASKU \\
+    \\
+    <%= TimeSanitizer.strftime(invoice.billing_date, "%d.%m.%Y") %>
+    \\
+    \\
+    \\
+    %\framebox{
+      \fontsize{10pt}{11pt}
+      \selectfont
+      \hspace*{0.5cm}
+      \begin{tabular}{|p{4cm}|p{4cm}|}
+
+        \hline
+          \textbf{Laskun numero:}\newline
+          <%= invoice.id %>
+        &
+          \textbf{Maksettava:}\newline
+          <%= number_with_precision(invoice.total, precision: 2) %> \euro
+        \\
+
+        \hline
+          \textbf{Asiakasnumero:}\newline
+          <%= customer.id %>
+        &
+          \textbf{Huomautusaika:}\newline
+          8 vrk
+        \\
+
+        \hline
+          \textbf{Päivämäärä:}\newline
+          <%= TimeSanitizer.strftime(invoice.billing_date, "%d.%m.%Y") %>
+        &
+          \textbf{Viivästyskorko:}\newline
+          8,00\%
+        \\
+
+        \hline
+          \textbf{Maksuehdot:}\newline
+          <%= invoice.due_days %> pv netto
+        &
+          \textbf{Muistutusmaksu:}\newline
+          5,00 \euro
+        \\
+
+        \hline
+          \textbf{Eräpäivä:}\newline
+          <%= TimeSanitizer.strftime(invoice.due_date, "%d.%m.%Y") %>
+        &\\
+
+        \hline
+      \end{tabular}
+    %}
+  } & 1 (1) \\
+\end{tabular}
+\vspace{1cm}
+%% Document Header END %%%%%
+
+%% Items %%%%%
+\fontsize{8pt}{9pt}
+\selectfont
+
+\begin{longtable}[t]{@{\extracolsep{\fill}}rlrrrr@{}}
+\parbox[t]{0.50cm}{\raggedleft Rivi\\nro} &
+\parbox[t]{10.0cm}{Tuote/palvelu} &
+\parbox[t]{1.5cm}{\raggedleft ALV-\%} &
+\parbox[t]{1.5cm}{\raggedleft Veroton\\yhteensä} &
+\parbox[t]{1.5cm}{\raggedleft ALV\\yhteensä} &
+\parbox[t]{1.5cm}{\raggedleft Verollinen\\yhteensä} \\[2.5ex]
+\hline
+\endhead
+<% item_number = 0 %>
+<% tax_total = 0 %>
+<% no_tax_total = 0 %>
+
+<% items_count = invoice.all_items.length %>
+<% items_on_page = 14 %>
+
+<% invoice.invoice_components.sort_by(&:start_time).each do |ic| %>
+  <% item_number += 1 %>
+  <% tax_total += ic.calculate_tax %>
+  <% no_tax_total += ic.calculate_price_without_tax %>
+  <% start_date = TimeSanitizer.strftime(ic.start_time, :date) %>
+  <% start_time = TimeSanitizer.strftime(ic.start_time, :user_clock_time) %>
+  <% end_time = TimeSanitizer.strftime(ic.end_time, :user_clock_time) %>
+  <% coach = ic.coaches.any? ? "(Valmentaja #{ic.coaches.map(&:full_name).join(', ')})" : '' %>
+  <% price = number_with_precision(ic.price, precision: 2) %>
+  <% price_without_tax = number_with_precision(ic.calculate_price_without_tax , precision: 2) %>
+  <% tax = number_with_precision(ic.calculate_tax, precision: 2) %>
+  <% cancelled = ic.reservation.blank? ? I18n.t('reservations.cancelled') : '' %>
+  \raggedbottom <%= item_number %> & \parbox[t]{10.0cm}{ \#<%= ic.reservation_id %> <%= safe_text ic.sport %> <%= start_date %>, klo <%= start_time %> - <%= end_time %>, kenttä <%= safe_text ic.court_name %><%= safe_text coach %> <%= cancelled %>}  & \raggedbottom <%= biller.tax_rate * 100 %>\% & \raggedbottom <%= price_without_tax %> & \raggedbottom <%= tax %> & \raggedbottom <%= price %> \\[2.2ex]
+  <% if items_count >= items_on_page && (item_number % items_on_page == 0) && (items_count - item_number) <= items_on_page %>
+    \newpage
+  <% end %>
+
+<% end %>
+
+<% invoice.participation_invoice_components.sort_by(&:start_time).each do |pic| %>
+  <% item_number += 1 %>
+  <% tax_total += pic.calculate_tax %>
+  <% no_tax_total += pic.calculate_price_without_tax %>
+  <% start_date = TimeSanitizer.strftime(pic.start_time, :date) %>
+  <% start_time = TimeSanitizer.strftime(pic.start_time, :user_clock_time) %>
+  <% end_time = TimeSanitizer.strftime(pic.end_time, :user_clock_time) %>
+  <% coach = pic.coaches.any? ? ", Valmentaja #{coaches.map(&:full_name).join(', ')}" : '' %>
+  <% price = number_with_precision(pic.price, precision: 2) %>
+  <% price_without_tax = number_with_precision(pic.calculate_price_without_tax , precision: 2) %>
+  <% tax = number_with_precision(pic.calculate_tax, precision: 2) %>
+  \raggedbottom <%= item_number %> & \parbox[t]{10.0cm}{ \#<%= pic.reservation.id %> <%= safe_text pic.court.sport %> <%= start_date %>, klo <%= start_time %> - <%= end_time %>, kenttä <%= safe_text pic.court.court_name %>(Ryhmä <%= safe_text pic.reservation.group.name %><%= safe_text coach %>)}  & \raggedbottom <%= biller.tax_rate * 100 %>\% & \raggedbottom <%= price_without_tax %> & \raggedbottom <%= tax %> & \raggedbottom <%= price %> \\[2.2ex]
+  <% if items_count >= items_on_page && (item_number % items_on_page == 0) && (items_count - item_number) <= items_on_page %>
+    \newpage
+  <% end %>
+
+<% end %>
+
+<% invoice.group_subscription_invoice_components.sort_by(&:start_date).each do |gsic| %>
+  <% item_number += 1 %>
+  <% tax_total += gsic.calculate_tax %>
+  <% no_tax_total += gsic.calculate_price_without_tax %>
+  <% start_date = TimeSanitizer.strftime(gsic.start_date, :date) %>
+  <% end_date = TimeSanitizer.strftime(gsic.end_date, :date) %>
+  <% price = number_with_precision(gsic.price, precision: 2) %>
+  <% price_without_tax = number_with_precision(gsic.calculate_price_without_tax , precision: 2) %>
+  <% tax = number_with_precision(gsic.calculate_tax, precision: 2) %>
+  \raggedbottom <%= item_number %> & \parbox[t]{10.0cm}{ Kausi <%= start_date %> - <%= end_date %>, Ryhmä <%= safe_text gsic.group.name %>}  & \raggedbottom <%= biller.tax_rate * 100 %>\% & \raggedbottom <%= price_without_tax %> & \raggedbottom <%= tax %> & \raggedbottom <%= price %> \\[2.2ex]
+  <% if items_count >= items_on_page && (item_number % items_on_page == 0) && (items_count - item_number) <= items_on_page %>
+    \newpage
+  <% end %>
+
+<% end %>
+
+<% invoice.gamepass_invoice_components.each do |gic| %>
+  <% item_number += 1 %>
+  <% tax_total += gic.calculate_tax %>
+  <% no_tax_total += gic.calculate_price_without_tax %>
+  \raggedbottom <%= item_number %> &
+  \begin{minipage}{10.0cm}
+    <%== safe_text gic.game_pass.auto_name %>
+  \end{minipage} &
+  \raggedbottom <%= biller.tax_rate * 100 %>\% &
+  \raggedbottom <%= number_with_precision(gic.calculate_price_without_tax , precision: 2) %> &
+  \raggedbottom <%= number_with_precision(gic.calculate_tax , precision: 2) %> &
+  \raggedbottom <%= number_with_precision(gic.price , precision: 2) %> \\[2.2ex]
+  <% if items_count >= items_on_page && (item_number % items_on_page == 0) && (items_count - item_number) <= items_on_page %>
+    \newpage
+  <% end %>
+
+<% end %>
+
+<% invoice.custom_invoice_components.each do |cic| %>
+  <% item_number += 1 %>
+  <% tax_total += cic.calculate_tax %>
+  <% no_tax_total += cic.calculate_price_without_tax %>
+  \raggedbottom <%= item_number %> &
+  \begin{minipage}{10.0cm}
+    <%== safe_text cic.name %>
+  \end{minipage} &
+  \raggedbottom <%= cic.vat_decimal * 100 %>\% &
+  \raggedbottom <%= number_with_precision(cic.calculate_price_without_tax , precision: 2) %> &
+  \raggedbottom <%= number_with_precision(cic.calculate_tax , precision: 2) %> &
+  \raggedbottom <%= number_with_precision(cic.price , precision: 2) %> \\[2.2ex]
+  <% if items_count >= items_on_page && (item_number % items_on_page == 0) && (items_count - item_number) <= items_on_page %>
+    \newpage
+  <% end %>
+
+<% end %>  \hline
+& Yhteensä&      & <%= number_with_precision(no_tax_total, precision: 2)%> & <%= number_with_precision(tax_total, precision: 2) %> & <%= number_with_precision(invoice.total, precision: 2) %> \\
+
+\end{longtable}
+%% Items END%%%%%

@@ -1,0 +1,7 @@
+- id: 1
+  iso_2:  "FI"
+  name:   "Finland"
+
+- id: 2
+  iso_2:  "US"
+  name:   "USA"

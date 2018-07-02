@@ -1,0 +1,227 @@
+<% company = @venue.company %>
+<% start_time = TimeSanitizer.output(@reservation.start_time) %>
+<% end_time = TimeSanitizer.output(@reservation.end_time) %>
+<% # show price only to owner %>
+<% show_price = @user == (@reservation.for_group? ? @reservation.group.owner : @reservation.user) %>
+<% # show convenience fee only for online made bookings %>
+<% show_convenience_fee = @reservation.online? %>
+<% full_price = show_convenience_fee ? @reservation.price_with_convenience_fee : @reservation.price %>
+<% price_tax = show_convenience_fee ? @reservation.calculate_tax_with_convenience_fee : @reservation.calculate_tax %>
+<% price_without_tax = show_convenience_fee ? @reservation.calculate_price_with_convenience_fee_without_tax : @reservation.calculate_price_without_tax %>
+<table class="pa20" width="100%" cellpadding="0" cellspacing="0">
+  <tr>
+    <td>
+      <table width="100%">
+        <tr>
+          <td align="left" class="logo-wrapper">
+            <img width="100" height="24" src="<%= image_url('amperlogo_blue@x2.png', host: api_host) %>" alt="Logo">
+          </td>
+          <td align="right">
+            <p class="alignright smallText m0"><%= t('booking_mailer.booking_email.booking_receipt')%>
+              <%= DateTime.current.strftime("%D") %>
+            </p>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr>
+    <td height="40"></td>
+  </tr>
+  <tr>
+    <td>
+      <%= render 'layouts/mailers/venue_title' %>
+    </td>
+  </tr>
+  <tr>
+    <td height="40"></td>
+  </tr>
+  <tr>
+    <td>
+      <table class="invoice">
+        <tr>
+          <td class="invoice__details">
+            <% if @reservation.for_group? %>
+              <p class="invoice__details-title"><%= t('booking_mailer.booking_email.group') %></p>
+              <p><%= @reservation.group.name %></p>
+            <% else %>
+              <p class="invoice__details-title">
+                <%= @reservation.coaches.present? ? t('.private_lesson') : t('.sender') %>
+              </p>
+              <p><%= @reservation.user.full_name %></p>
+            <% end %>
+          </td>
+        </tr>
+        <tr>
+          <td height="20"></td>
+        </tr>
+        <% if @reservation.coaches.any? %>
+          <tr>
+            <td class="invoice__details">
+              <p class="invoice__details-title"><%= t('booking_mailer.booking_email.coach') %></p>
+              <p><%= @reservation.coaches.map(&:full_name).join(', ') %></p>
+            </td>
+          </tr>
+          <tr>
+            <td height="20"></td>
+          </tr>
+        <% end %>
+        <% if @reservation.classification.present? %>
+          <tr>
+            <td class="invoice__details">
+              <p class="invoice__details-title"><%= t('booking_mailer.booking_email.classification') %></p>
+              <p><%= @reservation.classification.name %></p>
+            </td>
+          </tr>
+          <tr>
+            <td height="20"></td>
+          </tr>
+        <% end %>
+        <% participants = if @reservation.for_group?
+          @reservation.participations.active.includes(:user).map(&:user)
+        else
+          @reservation.participants
+        end
+        %>
+        <% if participants.present? %>
+          <tr>
+            <td class="invoice__details">
+              <p class="invoice__details-title"><%= t('booking_mailer.booking_email.participants') %></p>
+            </td>
+          </tr>
+          <% participants.each do |user| %>
+            <tr>
+              <td class="invoice__details">
+                <p><%= "#{user.full_name} (#{user.email})" %><p>
+              </td>
+            </tr>
+          <% end %>
+        <% end %>
+
+        <tr>
+          <td height="20"></td>
+        </tr>
+        <tr>
+          <td>
+            <table class="invoice-items" cellpadding="0" cellspacing="0">
+              <% if @reservation.court.venue.id == 4  && !@reservation.court.indoor? %>
+                <tr>
+                  <td>
+                    <%= t('booking_mailer.booking_email.enter_code_at_gate_text') %>
+                  </td>
+                </tr>
+              <% end %>
+              <tr>
+                <td>
+                  <table width="100%" class="invoice-items__item">
+                    <tr>
+                      <td align="left">
+                        <p class="invoice-items__name">
+                          <%= @reservation.court.sport.capitalize %> <%= t('booking_mailer.booking_email.in_court') %> <%= @reservation.court.court_name %>
+                        </p>
+                        <p class="invoice-items__time">
+                          <%= start_time.to_s(:date) %>,
+                          <%= start_time.to_s(:user_clock_time) %> - <%= end_time.to_s(:user_clock_time) %>
+                        </p>
+                      </td>
+                      <% if show_price %>
+                        <td align="right" valign="middle">
+                          <p class="invoice-items__price alignright">
+                            <%= t('booking_mailer.booking_email.price') %> <%= number_to_currency(@reservation.price) %></p>
+
+                          <% if show_convenience_fee && @reservation.court.country.US? %>
+                            <p class="invoice-items__price alignright">
+                              <%= t('booking_mailer.booking_email.convenience_fee') %> <%= number_to_currency(@reservation.convenience_fee) %></p>
+
+                            <p class="invoice-items__price alignright">
+                              <%= t('booking_mailer.booking_email.full_price') %> <%= number_to_currency(full_price) %></p>
+                          <% end %>
+                        </td>
+                      <% end %>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+              <% if show_price %>
+                <tr>
+                  <td height="20"></td>
+                </tr>
+                <tr>
+                  <td class="invoice-items__fee alignright">
+                    (<%= company.tax_name %> <%= company.tax_rate * 100 %>%
+                    <%= number_to_currency(price_tax) %>), <br />
+                    (<%= "#{number_to_currency(price_without_tax)} #{company.tax_name}. 0 %" %>)
+                  </td>
+                </tr>
+              <% end %>
+
+              <tr>
+                <td height="20"></td>
+              </tr>
+
+              <tr>
+                <td>
+                  <hr>
+                </td>
+              </tr>
+
+              <tr>
+                <td height="10"></td>
+              </tr>
+
+              <tr class="total">
+                <td height="10"></td>
+              </tr>
+
+              <% if show_price %>
+                <tr class="total">
+                  <td>
+                    <table width="100%">
+                      <tr>
+                        <td align="left" valign="middle">
+                          <span class="total-status__title"><%= t('booking_mailer.booking_email.payment_status') %>: </span>
+                          <span class="total-status__value">
+                          <%= @reservation.paid? ? t('booking_mailer.booking_email.paid') : t('booking_mailer.booking_email.unpaid') %>
+                        </span>
+                        </td>
+                        <td align="right" valign="middle">
+                          <span class="total__title"><%= t('booking_mailer.booking_email.total') %>: </span>
+                          <span class="total__value">
+                          <%= number_to_currency(full_price) %> </span>
+                          <span class="total__including">
+                          <%= "(#{t('booking_mailer.booking_email.including')} #{company.tax_name})" %>
+                        </span>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+              <% end %>
+
+              <tr>
+                <td>
+                  <%= @comment %>
+                </td>
+              </tr>
+
+              <tr>
+                <td><%= link_to t('booking_mailer.booking_email.add_to_calendar_link'), api_reservation_download_url(@reservation, format: :ics) %></td>
+              </tr>
+
+              <% if @venue.confirmation_message %>
+                <tr>
+                  <td height="25"></td>
+                </tr>
+
+                <tr>
+                  <td class="invoice__confirmation_message"><%= simple_format(@venue.confirmation_message) %></td>
+                </tr>
+              <% end %>
+
+            </table>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
